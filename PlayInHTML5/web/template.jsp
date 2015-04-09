@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    <title>PlayInHTML5${param.title}</title>
+    <title>PlayInHTML5 : ${param.title}</title>
     <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/style.css" />
     </head>
@@ -18,7 +18,9 @@
             <div class='container'>
                 <jsp:include page="header.jsp"/>
                 <h3>${param.title}</h3>
-                <jsp:include page="${param.content}.jsp"/>
+                <div class='content'>
+                    <jsp:include page="${param.content}.jsp"/>
+                </div>
                 <jsp:include page="footer.jsp"/>
             </div>
 
