@@ -13,12 +13,14 @@
     <title>PlayInHTML5 : ${param.title}</title>
     <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/style.css" />
+    	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
             <div class='container'>
                 <jsp:include page="header.jsp"/>
-                <h3>${param.title}</h3>
                 <div class='content'>
+                    <h2>${param.title}</h2>
+                    <hr>
                     <jsp:include page="${param.content}.jsp"/>
                 </div>
                 <jsp:include page="footer.jsp"/>
