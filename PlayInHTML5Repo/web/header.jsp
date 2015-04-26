@@ -11,10 +11,13 @@
 
 <div class='nav'>
     <ul>
-        <li><a href=''><i class="fa fa-home"></i> Accueil</a></li>
+        <li><i class="fa fa-arrow-right"></i> </li>
+        <li><a href='ServletIndex'><i class="fa fa-home"></i> Accueil</a></li>
         <li><a href=''><i class="fa fa-gamepad"></i> Jeu</a></li>
         <li><a href=''><i class="fa fa-share"></i> Démo</a></li>
         <li><a href=''><i class="fa fa-book"></i> Tutoriel</a></li>
+        <li><a href='ServletAdministration'><i class="fa fa-cogs"></i> Administration </a></li>
+        
     </ul>
 </div>
 

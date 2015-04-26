@@ -78,10 +78,15 @@ div{
 }
 
 .nav ul{
-    margin-left: 10px;
+    margin-left: -25px;
     overflow: hidden;
 }
-.nav li:nth-child(1) a{
+.nav li:nth-child(1) {
+    color:white;
+    width: 25px;
+
+}
+.nav li:nth-child(2) a{
     border-left: solid 1px white;
 }
 .nav {
@@ -96,12 +101,13 @@ div{
     text-decoration: none;
     line-height:30px;
     color:white;
-    min-width:115px;
-    max-width:115px;
+    min-width:120px;
+    max-width:120px;
     text-align: center;
     display: block;
     border-right: solid white 1px;
     height:30px;
+    font-size: 85%;
 }
 .nav a:hover{
     background-color: #FA5519;

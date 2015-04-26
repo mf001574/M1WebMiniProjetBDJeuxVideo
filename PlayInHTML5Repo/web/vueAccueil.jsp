@@ -5,6 +5,6 @@
 --%>
 
 <jsp:include page="template.jsp">
-	<jsp:param name="content" value="accueil"/>
+	<jsp:param name="content" value="contenuAccueil"/>
 	<jsp:param name="title" value="Page d'accueil"/>
 </jsp:include>
