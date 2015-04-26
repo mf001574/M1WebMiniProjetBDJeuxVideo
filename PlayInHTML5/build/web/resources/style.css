@@ -48,6 +48,7 @@ div{
     color:white;
     font-size: 80%;
     margin-top: -6px;
+    margin-bottom: 5px;
 }
 
 .footer li{
@@ -167,7 +168,7 @@ b{
     margin-top: -5px !important;
 }
 input{
-    color:#DD4814;
+    color:#0170BA;
 }
 input[type="submit"]{
   background-color:  #DD4814; 
