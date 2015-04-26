@@ -10,10 +10,7 @@
         </session-timeout>
     </session-config>
     
-    <error-page>
-        <error-code>404</error-code>
-        <location>/error-404.jsp</location>
-    </error-page>
+ 
     <welcome-file-list>
         <welcome-file>ServletIndex</welcome-file>
     </welcome-file-list>

@@ -180,9 +180,10 @@ input[type="submit"]{
   background-color:  #DD4814; 
   color:white;
   border:none;
-  width:100px;
+  min-width:100px;
   height: 35px;
   font-size: 90%;
+  border-radius: 3px;
   
 }
 input[type="submit"]:hover{

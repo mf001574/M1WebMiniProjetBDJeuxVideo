@@ -13,4 +13,5 @@
     </p>
     <p>
            N'attendez pas inscrivez vous!
-    </b>
+    </p>
+    

@@ -5,8 +5,10 @@
  */
 package servlets;
 
+import gestionnaires.GestionnaireUtilisateur;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletAdministration", urlPatterns = {"/ServletAdministration"})
 public class ServletAdministration extends HttpServlet {
+    @EJB
+    private GestionnaireUtilisateur gestionnaireUtilisateur;
+   
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,12 +39,17 @@ public class ServletAdministration extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             String action = request.getParameter("action");
+             String action = request.getParameter("action");        
              if(action!=null){
-                 
+                
+                 if(action.equals("creer1000")){
+                    this.gestionnaireUtilisateur.creer1000UtilisateursDeTest();
+                    
+                 }
              }
             /*RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
             dp.forward(request, response);*/
+            request.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
             response.sendRedirect("vueAdministration.jsp");
         }
     }
