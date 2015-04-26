@@ -1,5 +1,5 @@
 /*
-To change this license header, choose License Headers in Project Properties.
+To c2ange this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
@@ -7,7 +7,12 @@ and open the template in the editor.
     Created on : 9 avr. 2015, 16:45:10
     Author     : florian
 */
-
+html{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
 body{
     margin: 0;
     padding: 0;
@@ -42,6 +47,7 @@ div{
     background-color: #0170BA;
     color:white;
     font-size: 80%;
+    margin-top: -6px;
 }
 
 .footer li{
@@ -101,32 +107,81 @@ div{
     transition: 1s;
 }
 
-.content{
-    margin-bottom: 10px;
-    margin-top: 10px;
+.content-left{
+    margin-bottom: 5px;
+    margin-top: 5px;
     background-color: white;
     border: solid 1px rgb(200,200,200);
-
+    padding: 10px;
+    padding-top:0px; 
+    max-width: 250px;
+    min-width: 250px;
+    float: left;
+}
+.content{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-color: white;
+    border: solid 1px rgb(200,200,200);
+    padding: 10px;
+    padding-top:0px; 
+    max-width: 499px;
+    min-width: 499px;
+    margin-left: 279px;
+    min-height: 600px;
 }
 
 .content h2{
     color:#0170BA;   
-    margin-left: 50px;
+    text-align: center;
     font-weight:normal;
 }
 
 hr{
     display: block; height: 1px;
     border: 0; border-top: 1px solid rgb(200,200,200);
-    margin: 1em 0; padding: 0;
+    padding: 0;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .content p{
     font-size: 90%;
-    margin-left: 300px;
 }
 b{
    color: #DD4814;
+}
+.imgLeft{
+    float:left;
+    width:120px;
+    height:120px;
+    margin-left: 90px;
+}
+.content-left h3{
+    color:#0170BA;
+    font-weight:normal;
+    text-align: center;
+}
+.content-left p{
+    text-align: center;
+    margin-top: -5px !important;
+}
+input{
+    color:#DD4814;
+}
+input[type="submit"]{
+  background-color:  #DD4814; 
+  color:white;
+  border:none;
+  width:100px;
+  height: 35px;
+  font-size: 90%;
+  
+}
+input[type="submit"]:hover{
+  background-color: #FA5519;
+  transition: 1s;
+
 }
 
 

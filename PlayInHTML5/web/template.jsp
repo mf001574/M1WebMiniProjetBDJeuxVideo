@@ -18,11 +18,42 @@
     <body>
             <div class='container'>
                 <jsp:include page="header.jsp"/>
-                <div class='content'>
-                    <h2>${param.title}</h2>
-                    <hr>
-                    <jsp:include page="${param.content}.jsp"/>
-                </div>
+                    
+                    <div class='content-left'>
+                         <h3><i class="fa fa-user"></i> Connexion</h3>
+                        <form method="post">
+                            <p>
+                                <input type='text' name='login'>
+                            </p>
+                            <p>
+                                <input type='password' name='login'>
+                            </p>
+                            <p>
+                                <input type='submit'  name='action' value='Se connecter'>
+                            </p>
+                        </form>
+                        <h3><i class="fa fa-user"></i> Inscription</h3>
+                        <form method="post">
+                            <p> 
+                                <input type='text' name='login'>
+                            </p>
+                            <p>
+                                <input type='password' name='login'>
+                            </p>
+                            <p>
+                                <input type='password' name='c-login'>
+                            </p>
+                            <p>
+                                <input type='submit'  name='action' value="S'inscrire">
+                            </p>
+                        </form>
+                    </div>
+               
+                    <div class='content'>
+                        <h2>${param.title}</h2>
+                        <jsp:include page="${param.content}.jsp"/>
+                    </div>
+              
                 <jsp:include page="footer.jsp"/>
             </div>
 

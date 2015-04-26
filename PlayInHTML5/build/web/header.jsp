@@ -15,8 +15,6 @@
         <li><a href=''><i class="fa fa-gamepad"></i> Jeu</a></li>
         <li><a href=''><i class="fa fa-share"></i> Démo</a></li>
         <li><a href=''><i class="fa fa-book"></i> Tutoriel</a></li>
-        <li><a href=''><i class="fa fa-user"></i> Connexion</a></li>
-        <li><a href=''><i class="fa fa-envelope"></i> Contact</a></li>
     </ul>
 </div>
 
