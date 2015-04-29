@@ -27,7 +27,6 @@ public class GestionnaireUtilisateur {
     
     public GestionnaireUtilisateur(){
         this.nbUtilisateurs = 0;
-        System.out.println("Je suis dans le contructeur");
     }
 
     public EntityManager getEm() {

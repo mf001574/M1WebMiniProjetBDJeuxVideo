@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach var="u" items="${requestScope['listeUtilisateurs']}">
+        <c:forEach var="u" items="${listeUtilisateurs}">
             <tr>
                 <td>${u.id}</td>
                 <td>${u.mdp}</td>

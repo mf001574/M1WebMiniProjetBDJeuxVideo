@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -48,10 +49,13 @@ public class ServletAdministration extends HttpServlet {
                  }
              }
           
-            request.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
-            RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
-            dp.forward(request, response);
-            //response.sendRedirect("vueAdministration.jsp");
+            //request.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
+            //RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
+            //dp.forward(request, response);
+             HttpSession session = request.getSession(true);
+             session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
+             response.sendRedirect("vueAdministration.jsp");
+           
             
         }
     }
