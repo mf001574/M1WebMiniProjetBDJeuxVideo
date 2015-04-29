@@ -31,7 +31,7 @@ public class GestionnaireUtilisateur {
 
     public EntityManager getEm() {
         return em;
-    }
+    } 
 
     public void setEm(EntityManager em) {
         this.em = em;
@@ -47,17 +47,17 @@ public class GestionnaireUtilisateur {
   
     
     
-    public void creer1000UtilisateursDeTest(){
-        for(int i = 1 ; i<=1000;i++){
-            int indice = this.nbUtilisateurs+i;
-            this.creerUtilisateur("Utilisateur"+indice,"test",0);
+    public void creer100UtilisateursDeTest(){
+        for(int i = 1 ; i<=100;i++){
+            System.out.println("indice->"+(int)(this.nbUtilisateurs + i));
+            this.creerUtilisateur("Utilisateur"+(int)(this.nbUtilisateurs + i),"test",0);
         }
        
     }
     public Utilisateur creerUtilisateur(String login, String mdp,int type) {
         Utilisateur u = new Utilisateur(login,mdp,type);
-        em.persist(u);
         this.nbUtilisateurs++;
+        em.persist(u);
         return u;
     }
     

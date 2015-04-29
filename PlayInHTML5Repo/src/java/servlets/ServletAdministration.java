@@ -42,15 +42,17 @@ public class ServletAdministration extends HttpServlet {
              String action = request.getParameter("action");        
              if(action!=null){
                 
-                 if(action.equals("creer1000")){
-                    this.gestionnaireUtilisateur.creer1000UtilisateursDeTest();
+                 if(action.equals("creer100")){
+                    this.gestionnaireUtilisateur.creer100UtilisateursDeTest();
                     
                  }
              }
-            /*RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
-            dp.forward(request, response);*/
+          
             request.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
-            response.sendRedirect("vueAdministration.jsp");
+            RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
+            dp.forward(request, response);
+            //response.sendRedirect("vueAdministration.jsp");
+            
         }
     }
 

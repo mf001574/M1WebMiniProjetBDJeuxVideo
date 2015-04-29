@@ -9,8 +9,8 @@
 <h3>Liste des utilisateurs</h3>
 <p>
 <form method='post' action='ServletAdministration'>
-    <input type='hidden' name='action' value='creer1000'>
-    <input type='submit'  value='Créer 1000 utilisateurs'>
+    <input type='hidden' name='action' value='creer100'>
+    <input type='submit'  value='Créer 100 utilisateurs'>
 </form>
 <table>
     <thead>
