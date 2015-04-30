@@ -138,7 +138,7 @@ div{
     min-height: 600px;
 }
 
-.content h2{
+.content h2, .content h3{
     color:#0170BA;   
     text-align: center;
     font-weight:normal;
@@ -191,5 +191,29 @@ input[type="submit"]:hover{
   transition: 1s;
 
 }
+table {
+    border-width:1px; 
+    border-style:solid; 
+    border-color:#0170BA;
+    border-collapse:collapse;
+    width: 100%;
+  
+ }
+td,th { 
+    border-width:1px;
+    border-style:solid; 
+    border-color:#0170BA;
+    font-weight: normal;
+ }
+ tr:hover , tr:nth-child(2n):hover{
+     background-color: rgba(1,112,186,0.2);
+ }
+ tr:nth-child(2n){
+     background-color: rgba(1,112,186,0.05);
+ }
+ th{
+     background-color:#0170BA;
+     color:white;
+ }
 
 

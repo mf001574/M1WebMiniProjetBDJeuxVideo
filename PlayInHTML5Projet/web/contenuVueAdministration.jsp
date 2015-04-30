@@ -6,7 +6,6 @@
 
             
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h3>Liste des utilisateurs</h3>
 <p>
 <form method='post' action='ServletAdministration'>
     <input type='hidden' name='action' value='creer1000'>
@@ -21,6 +20,7 @@
         </tr>
     </thead>
     <tbody>
+    <h3>Liste des utilisateurs</h3>
         <c:forEach var="u" items="${listeUtilisateurs}">
             <tr>
                 <td>${u.id}</td>

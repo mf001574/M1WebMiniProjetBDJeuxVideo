@@ -49,7 +49,8 @@ public class GestionnaireUtilisateur {
     
     public void creer1000UtilisateursDeTest(){
         for(int i = 1 ; i<=1000;i++){
-            this.creerUtilisateur("Utilisateur"+this.nbUtilisateurs ,"test",0);
+            int indice = this.nbUtilisateurs+1;
+            this.creerUtilisateur("Utilisateur"+indice ,"test"+indice,0);
         }
        
     }
