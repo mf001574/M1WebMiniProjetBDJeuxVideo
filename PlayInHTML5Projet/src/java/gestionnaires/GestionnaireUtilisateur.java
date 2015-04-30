@@ -63,8 +63,14 @@ public class GestionnaireUtilisateur {
     
     public Collection<Utilisateur> getAllUsers(){
         Query q = em.createQuery("select u from Utilisateur u order by u.id");
-        //q.setFirstResult(this.indiceDepart);
-       // q.setMaxResults(10);
+        //q.setFirstResult(0);
+        //q.setMaxResults(10);
         return q.getResultList();
+    }
+    public Collection<Utilisateur> get10Users(int depart){
+         Query q = em.createQuery("select u from Utilisateur u order by u.id");
+         q.setFirstResult(depart);
+         q.setMaxResults(10);
+         return q.getResultList();
     }
 }

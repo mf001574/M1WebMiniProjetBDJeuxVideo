@@ -14,9 +14,9 @@
 <table>
     <thead>
         <tr>
-            <th>Login</th>
+            <th>Identifiant</th>
             <th>Mot de passe </th>
-            <th>Type d'utilisateur </th>
+            <th>Type d'utilisateur</th>
         </tr>
     </thead>
     <tbody>
@@ -25,9 +25,24 @@
             <tr>
                 <td>${u.id}</td>
                 <td>${u.mdp}</td>
-                <td>${u.type}</td>
+                <c:if test="${u.type  == '0'}">
+                    <td>Utilisateur classique</td>
+                </c:if>
+                <c:if test="${u.type  == '1'}">
+                    <td>Administrateur</td>
+                </c:if>
             </tr>
         </c:forEach>
     </tbody>
+    <tfoot>
+        <tr>
+            <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=reculer'>Précédent</a></td>
+            <td>${depart}-${depart+9}</td>
+            <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=avancer'>Suivant</a></td>
+        </tr>
+    </tfoot>
 </table>
+ <h3>Liste des jeux</h3>
+ <h3>Liste des démos</h3>
+ <h3>Liste des tutoriaux</h3>
 </p>

@@ -25,7 +25,8 @@ import javax.servlet.http.HttpSession;
 public class ServletAdministration extends HttpServlet {
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
-   
+    private int indiceCourant;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +47,13 @@ public class ServletAdministration extends HttpServlet {
                  if(action.equals("creer1000")){
                     this.gestionnaireUtilisateur.creer1000UtilisateursDeTest();
                     
+                 }else if(action.equals("avancer")){
+                     this.indiceCourant+=10;
+                     this.gestionnaireUtilisateur.get10Users(this.indiceCourant);
+                 }else if(action.equals("reculer")){
+                     if(!(this.indiceCourant<=0))
+                         this.indiceCourant-=10;
+                     this.gestionnaireUtilisateur.get10Users(this.indiceCourant);
                  }
              }
           
@@ -53,7 +61,8 @@ public class ServletAdministration extends HttpServlet {
             //RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
             //dp.forward(request, response);
              HttpSession session = request.getSession(true);
-             session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
+             session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.get10Users(this.indiceCourant));
+             session.setAttribute("depart", this.indiceCourant);
              response.sendRedirect("vueAdministration.jsp");
            
             

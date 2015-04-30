@@ -192,17 +192,13 @@ input[type="submit"]:hover{
 
 }
 table {
-    border-width:1px; 
-    border-style:solid; 
     border-color:#0170BA;
     border-collapse:collapse;
     width: 100%;
+    text-align: center;
   
  }
 td,th { 
-    border-width:1px;
-    border-style:solid; 
-    border-color:#0170BA;
     font-weight: normal;
  }
  tr:hover , tr:nth-child(2n):hover{
@@ -211,9 +207,12 @@ td,th {
  tr:nth-child(2n){
      background-color: rgba(1,112,186,0.05);
  }
- th{
+ th, tfoot td{
      background-color:#0170BA;
      color:white;
+ }
+ td > a{
+    color: white; 
  }
 
 
