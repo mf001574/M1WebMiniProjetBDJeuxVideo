@@ -86,5 +86,10 @@ public class GestionnaireUtilisateur {
         Query q = em.createQuery("select u from Utilisateur u where u.id='"+login+"'");
         return q.getResultList();
     }
+    public boolean supprimerUtilisateur(String login){
+        Query q = em.createQuery("delete from Utilisateur u where u.id='"+login+"'");
+        int nbsup = q.executeUpdate();
+        return nbsup>0;
+    }
    
 }

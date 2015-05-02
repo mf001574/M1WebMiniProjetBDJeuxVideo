@@ -54,6 +54,8 @@ public class ServletAdministration extends HttpServlet {
                      if(!(this.indiceCourant<=0))
                          this.indiceCourant-=10;
                      this.gestionnaireUtilisateur.get10Users(this.indiceCourant);
+                 }else if(action.equals("supprimerU")){
+                     this.gestionnaireUtilisateur.supprimerUtilisateur(request.getParameter("idU"));
                  }
              }
           

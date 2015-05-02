@@ -51,7 +51,10 @@
                                     <input type='password' name='mdp' id='mdpI' placeholder="Mot de passe" required>
                                 </p>
                                 <p>
-                                    <input type='password' name='mdp2' id='confirmI'  placeholder="Confirmation mot de passe" required>
+                                    <input type='password' name='mdp2' id='confirmI'  placeholder="Confirmation " required>
+                                </p>
+                                <p>
+                                    <input type='password' name='mdpAdmin' id='adminI'  placeholder="(Admininistrateur) Mot de passe" >
                                 </p>
                                 <p>
                                     <input type='submit'  name='action' value="S'inscrire" >

@@ -20,6 +20,9 @@ $(document).ready(function () {
                    $('#titreConnexion').hide();
                    $('#titreInscription').hide();
                    $('.lienCache').show("slow");
+                   if(objJSON.type =="1"){
+                       $('.lienAdminCache').show("slow");
+                   }
                }
             },
 

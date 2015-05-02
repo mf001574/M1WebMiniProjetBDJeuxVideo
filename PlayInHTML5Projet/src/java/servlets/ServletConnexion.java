@@ -56,6 +56,7 @@ public class ServletConnexion extends HttpServlet {
                 //création de la réponse en JSON
                 if(u!=null){
                     jsonBuilder.add("login", u.getId());
+                    jsonBuilder.add("type", u.getType());
                     session.setAttribute("loginU", u.getId());
                     session.setAttribute("typeU", u.getType());
                 }
@@ -69,7 +70,11 @@ public class ServletConnexion extends HttpServlet {
             }else if(action.equals("inscription")){
                 //On peut creer l'utilisateur
                 if(this.gestionnaireUtilisateur.getUserWithLogin(request.getParameter("login")).isEmpty()){
-                   this.gestionnaireUtilisateur.creerUtilisateur(request.getParameter("login"),request.getParameter("mdp"), 0);
+                   int isAdmin = 0; 
+                   if(request.getParameter("mdpAdmin").equals("admin")){
+                      isAdmin=1; 
+                   }
+                   this.gestionnaireUtilisateur.creerUtilisateur(request.getParameter("login"),request.getParameter("mdp"), isAdmin);
                    jsonBuilder.add("message", "L'utilisateur "+ request.getParameter("login")+ " est bien enregistré");
                 }else{
                    jsonBuilder.add("message", "Identifiant indisponible");

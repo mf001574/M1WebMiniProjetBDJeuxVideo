@@ -25,6 +25,7 @@
          <li class="lienCache"><a href=''><i class="fa fa-gamepad"></i> Jeu</a></li>
          <li class="lienCache"><a href=''><i class="fa fa-share"></i> Démo</a></li>
          <li class="lienCache"><a href=''><i class="fa fa-book"></i> Tutoriel</a></li>
+         <li class="lienAdminCache"><a href='ServletAdministration'><i class="fa fa-cogs"></i> Administration </a></li>
     </ul>
 </div>
 

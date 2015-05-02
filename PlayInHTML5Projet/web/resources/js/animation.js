@@ -10,4 +10,5 @@ $(document).ready(function () {
         $('#msgConnexion').hide();
         $('#msgInscription').hide();
         $('.lienCache').hide();
+        $('.lienAdminCache').hide();
 });

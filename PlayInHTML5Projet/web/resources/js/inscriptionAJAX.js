@@ -1,10 +1,11 @@
 $(document).ready(function () {
     $('#formInscription').on('submit',function(){
-        $.ajax({
+        if($('#mdpI').val()== $('#confirmI').val()){
+         $.ajax({
             url : 'connexion',
             type : 'POST',
             dataType : 'json',
-            data : {action: 'inscription', login:$('#idI').val(), mdp:$('#mdpI').val()},
+            data : {action: 'inscription', login:$('#idI').val(), mdp:$('#mdpI').val(),mdpAdmin:$('#adminI').val()},
             timeout: 5000,
             success : function(objJSON, statut){
              $('#msgInscription').show();
@@ -16,6 +17,10 @@ $(document).ready(function () {
             }
 
         });
+        }else{
+             $('#msgInscription').show();
+             $('#msgInscription').html("Diff&eacute;rents mots de passe");
+        }
         return false;
     });
     

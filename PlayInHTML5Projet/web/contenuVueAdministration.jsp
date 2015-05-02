@@ -17,6 +17,7 @@
             <th>Identifiant</th>
             <th>Mot de passe </th>
             <th>Type d'utilisateur</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -31,13 +32,20 @@
                 <c:if test="${u.type  == '1'}">
                     <td>Administrateur</td>
                 </c:if>
+                <td>
+                    <form method='post' action='ServletAdministration'>
+                        <input type="hidden" name="idU" value="${u.id}">
+                        <input type="hidden" name="action" value="supprimerU">
+                        <input type="submit" value="Supprimer">
+                    </form>       
+                </td>
             </tr>
         </c:forEach>
     </tbody>
     <tfoot>
         <tr>
             <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=reculer'>Précédent</a></td>
-            <td>${depart}-${depart+9}</td>
+            <td colspan="2">${depart}-${depart+9}</td>
             <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=avancer'>Suivant</a></td>
         </tr>
     </tfoot>
