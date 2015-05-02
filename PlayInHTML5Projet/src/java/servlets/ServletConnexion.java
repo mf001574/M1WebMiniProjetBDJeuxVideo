@@ -5,8 +5,11 @@
  */
 package servlets;
 
+import gestionnaires.GestionnaireUtilisateur;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +20,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
+import modeles.Utilisateur;
 
 
 /**
@@ -25,6 +29,8 @@ import javax.json.JsonWriter;
  */
 @WebServlet(name = "ServletConnexion", urlPatterns = {"/connexion"})
 public class ServletConnexion extends HttpServlet {
+     @EJB
+    private GestionnaireUtilisateur gestionnaireUtilisateur;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,12 +46,19 @@ public class ServletConnexion extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
         //JsonArrayBuilder phoneNumBuilder = Json.createArrayBuilder();
-        
-        jsonBuilder.add("login", "toto");
-        jsonBuilder.add("mdp", "test");
-        jsonBuilder.add("type", "0");
-        try (PrintWriter out = response.getWriter()) {
-           out.println(jsonBuilder.build());        
+        String action = request.getParameter("action");  
+        if(action!=null){
+            if(action.equals("connexion")){
+                //requete de connexion
+                Utilisateur u = this.gestionnaireUtilisateur.demanderConnexion(request.getParameter("login"), request.getParameter("mdp"));
+                //création de la réponse en JSON
+                if(u!=null){
+                    jsonBuilder.add("login", u.getId());
+                }
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(jsonBuilder.build());        
+                }
+            }
         }
     }
 

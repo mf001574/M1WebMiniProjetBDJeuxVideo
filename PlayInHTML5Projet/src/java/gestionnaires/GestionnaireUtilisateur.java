@@ -73,4 +73,13 @@ public class GestionnaireUtilisateur {
          q.setMaxResults(10);
          return q.getResultList();
     }
+    public Utilisateur demanderConnexion(String id, String mdp){
+        Query q = em.createQuery("select u from Utilisateur u where u.id='"+id+"' and u.mdp='"+mdp+"'");
+        Collection<Utilisateur>res = q.getResultList();
+        if(!res.isEmpty()){
+          //On retourne le 1 er utilisateur
+          return res.iterator().next();  
+        }
+        return null;
+    }
 }

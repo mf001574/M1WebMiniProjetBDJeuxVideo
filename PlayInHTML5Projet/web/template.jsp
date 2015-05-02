@@ -26,16 +26,17 @@
                         <form method='post' id='formConnexion'>
                             <h3><i class="fa fa-user"></i> Connexion</h3>
                             <p>
-                                <input type='text' name='login' placeholder="Identifiant" required>
+                                <input type='text' id='idC'  name='login' placeholder="Identifiant" required>
                             </p>
                             <p>
-                                <input type='password' name='mdp'  placeholder="Mot de passe" required>
+                                <input type='password' id='mdpC' name='mdp'  placeholder="Mot de passe" required>
                             </p>
                             <p>
                                 <input type='submit'  name='action' value='Se connecter'>
                             </p>
                         </form>
-                       <div id='msgConnexion'>
+                       <div id='msgConnexion'>     
+                        </div>
                         <form  id='formInscription'>
                             <h3><i class="fa fa-user"></i> Inscription</h3>
                             <p> 
@@ -51,8 +52,7 @@
                                 <input type='submit'  name='action' value="S'inscrire" >
                             </p>
                         </form>
-                            
-                        </div>
+                       
                     </div>
                
                     <div class='content'>
