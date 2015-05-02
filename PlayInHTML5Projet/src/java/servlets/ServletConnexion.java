@@ -20,6 +20,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
+import javax.servlet.http.HttpSession;
 import modeles.Utilisateur;
 
 
@@ -46,7 +47,8 @@ public class ServletConnexion extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
         //JsonArrayBuilder phoneNumBuilder = Json.createArrayBuilder();
-        String action = request.getParameter("action");  
+        String action = request.getParameter("action"); 
+        HttpSession session = request.getSession(true);
         if(action!=null){
             if(action.equals("connexion")){
                 //requete de connexion
@@ -54,6 +56,23 @@ public class ServletConnexion extends HttpServlet {
                 //création de la réponse en JSON
                 if(u!=null){
                     jsonBuilder.add("login", u.getId());
+                    session.setAttribute("loginU", u.getId());
+                    session.setAttribute("typeU", u.getType());
+                }
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(jsonBuilder.build());        
+                }
+            }else if(action.equals("deconnexion")){
+                session.setAttribute("loginU", null);
+                session.setAttribute("typeU", null);
+                response.sendRedirect("ServletIndex");
+            }else if(action.equals("inscription")){
+                //On peut creer l'utilisateur
+                if(this.gestionnaireUtilisateur.getUserWithLogin(request.getParameter("login")).isEmpty()){
+                   this.gestionnaireUtilisateur.creerUtilisateur(request.getParameter("login"),request.getParameter("mdp"), 0);
+                   jsonBuilder.add("message", "L'utilisateur "+ request.getParameter("login")+ " est bien enregistré");
+                }else{
+                   jsonBuilder.add("message", "Identifiant indisponible");
                 }
                 try (PrintWriter out = response.getWriter()) {
                     out.println(jsonBuilder.build());        

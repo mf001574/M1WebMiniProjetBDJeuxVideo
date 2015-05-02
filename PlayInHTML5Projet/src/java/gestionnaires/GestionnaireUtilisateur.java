@@ -82,4 +82,9 @@ public class GestionnaireUtilisateur {
         }
         return null;
     }
+    public Collection<Utilisateur> getUserWithLogin(String login){
+        Query q = em.createQuery("select u from Utilisateur u where u.id='"+login+"'");
+        return q.getResultList();
+    }
+   
 }

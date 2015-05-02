@@ -16,43 +16,62 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>   
         <script type='text/javascript' src='resources/js/connexionAJAX.js'></script>
+        <script type='text/javascript' src='resources/js/animation.js'></script>
+        <script type='text/javascript' src='resources/js/inscriptionAJAX.js'></script>
     </head>
     <body>
             <div class='container'>
                 <jsp:include page="header.jsp"/>
                     
                     <div class='content-left'>
-                       
-                        <form method='post' id='formConnexion'>
-                            <h3><i class="fa fa-user"></i> Connexion</h3>
-                            <p>
-                                <input type='text' id='idC'  name='login' placeholder="Identifiant" required>
-                            </p>
-                            <p>
-                                <input type='password' id='mdpC' name='mdp'  placeholder="Mot de passe" required>
-                            </p>
-                            <p>
-                                <input type='submit'  name='action' value='Se connecter'>
-                            </p>
-                        </form>
-                       <div id='msgConnexion'>     
-                        </div>
-                        <form  id='formInscription'>
-                            <h3><i class="fa fa-user"></i> Inscription</h3>
-                            <p> 
-                                <input type='text' name='login' placeholder="Identifiant" required>
-                            </p>
-                            <p>
-                                <input type='password' name='mdp' placeholder="Mot de passe" required>
-                            </p>
-                            <p>
-                                <input type='password' name='mdp2' placeholder="Confirmation mot de passe" required>
-                            </p>
-                            <p>
-                                <input type='submit'  name='action' value="S'inscrire" >
-                            </p>
-                        </form>
-                       
+                        <c:if test="${loginU  == null}">
+
+                            <h3 id="titreConnexion"><i class="fa fa-user"></i> Connexion <button id="affichageConnexion" class="hideShowButton">+</button></h3>
+                            <form method='post' id='formConnexion'>
+
+                                <p>
+                                    <input type='text' id='idC'  name='login' placeholder="Identifiant" required>
+                                </p>
+                                <p>
+                                    <input type='password' id='mdpC' name='mdp'  placeholder="Mot de passe" required>
+                                </p>
+                                <p>
+                                    <input type='submit'  name='action' value='Se connecter'>
+                                </p>
+                            </form>
+                           <div id='msgConnexion'>     
+                            </div>
+                             <h3 id="titreInscription"><i class="fa fa-user"></i> Inscription <button id="affichageInscription" class="hideShowButton">+</button></h3>
+                            <form  method='post' id='formInscription'>
+
+                                <p> 
+                                    <input type='text' name='login' id='idI' placeholder="Identifiant" required>
+                                </p>
+                                <p>
+                                    <input type='password' name='mdp' id='mdpI' placeholder="Mot de passe" required>
+                                </p>
+                                <p>
+                                    <input type='password' name='mdp2' id='confirmI'  placeholder="Confirmation mot de passe" required>
+                                </p>
+                                <p>
+                                    <input type='submit'  name='action' value="S'inscrire" >
+                                </p>
+                            </form>
+                            <div id='msgInscription'>     
+                            </div>
+                       </c:if> 
+                       <c:if test="${loginU  != null}">
+                            <div id="msgApresConnexion">  
+                                <i class="fa fa-user"></i> Bienvenue ${loginU}
+                                <p>
+                                    <form method="post" action="connexion"> 
+                                        <input type="hidden" name="action" value="deconnexion">
+                                        <input type="submit" value="Se déconnecter">
+                                    </form>
+                                </p>
+                            </div>
+                            
+                       </c:if>
                     </div>
                
                     <div class='content'>
