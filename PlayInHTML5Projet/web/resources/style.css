@@ -225,6 +225,7 @@ td,th {
  }
  td > a{
     color: white; 
+    text-decoration: none;
  }
 
  #msgConnexion, #msgApresConnexion{
