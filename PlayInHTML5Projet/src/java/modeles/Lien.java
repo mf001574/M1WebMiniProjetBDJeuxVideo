@@ -6,10 +6,12 @@
 package modeles;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +24,8 @@ public class Lien implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String libelle;
+    @ManyToOne
+    private Contenu contenu;
 
     public Lien() {
        
@@ -29,7 +33,7 @@ public class Lien implements Serializable {
     public Lien(String libelle) {
         this.libelle = libelle;
     }
-
+    
     public String getLibelle() {
         return libelle;
     }
@@ -44,6 +48,14 @@ public class Lien implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public Contenu getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(Contenu contenu) {
+        this.contenu = contenu;
     }
 
     @Override

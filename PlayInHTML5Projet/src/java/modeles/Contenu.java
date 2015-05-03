@@ -12,6 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,11 +29,15 @@ public class Contenu implements Serializable {
     private Integer id;
     private String titre;
     private String resume;
-    private String cheminImg;
+    private String cheminImg; 
+    @OneToOne
     private TypeContenu typeContenu;
-    private Collection<Lien> liens;
-    private Collection<Tag> tags;
     
+    @OneToMany(mappedBy = "contenu")
+    private ArrayList<Lien> liens = new ArrayList<Lien>();
+   /* @ManyToMany
+    private ArrayList<Tag> tags = new ArrayList<Tag>();
+    */
     public Contenu(){
         
     }
@@ -38,8 +46,15 @@ public class Contenu implements Serializable {
         this.titre = titre;
         this.resume = resume;
         this.cheminImg = cheminImg;
-        this.liens = new ArrayList<Lien>();
-        this.tags = new ArrayList<Tag>();
+        this.typeContenu = typeContenu;
+    }
+    
+    
+    public TypeContenu getTypeContenu() {
+        return typeContenu;
+    }
+
+    public void setTypeContenu(TypeContenu typeContenu) {
         this.typeContenu = typeContenu;
     }
     
@@ -71,17 +86,27 @@ public class Contenu implements Serializable {
         return liens;
     }
 
-    public void setLiens(Collection<Lien> liens) {
+    public void setLiens(ArrayList<Lien> liens) {
         this.liens = liens;
     }
 
-    public Collection<Tag> getTags() {
+   /* public Collection<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Collection<Tag> tags) {
+    public void setTags(ArrayList<Tag> tags) {
         this.tags = tags;
     }
+     
+    public void removeTag(Tag t){
+        this.tags.remove(t);
+    }
+    
+    public void addLien(Tag t){
+        this.tags.add(t);
+    }
+    
+    */
     
 
     public Integer getId() {
@@ -91,6 +116,15 @@ public class Contenu implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+    
+    public void removeLien(Lien l){
+        this.liens.remove(l);
+    }
+    
+    public void addLien(Lien l){
+        this.liens.add(l);
+    }
+   
 
     @Override
     public int hashCode() {
