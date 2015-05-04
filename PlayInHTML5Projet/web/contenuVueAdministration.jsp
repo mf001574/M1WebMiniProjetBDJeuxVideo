@@ -54,12 +54,6 @@
         </tfoot>
     </table>
      <h3> <i class='fa fa-gamepad'></i> Gestion des jeux</h3>
-     <form method='post' class="formCentre" action='ServletAdministration'>
-        <p>
-            <input type='hidden' name='action' value='creer10Jeux'>
-            <input type='submit'  value='Créer 10 jeux aléatoirement'>
-        </p>
-    </form>
     <form method='post' class="formCentre" action='ServletAdministration'>
         <p>
             <input type='hidden' name='action' value='creerJeux'>
@@ -69,10 +63,10 @@
       <table id='tableJeux'>
         <thead>
             <tr>
+                <th>Image</th>
                 <th>Identifiant</th>
                 <th>Titre</th>
                 <th>Résumé</th>
-                <th>Image</th>
                 <th>Liens</th>
                 <th>Tags</th>
                 <th>Actions</th>
@@ -81,17 +75,30 @@
         <tbody
             <c:forEach var="j" items="${listeJeux}">
                 <tr>
+                    <td><img src="${j.cheminImg}"></td>
                     <td>${j.id}</td>
                     <td>${j.titre}</td>
-                    <td>${j.resume}</td>
-                    <td><img src="${j.cheminImg}" style='width:25px;height:25px;'></td>
-                    <td>Liens</td>
+                    <td> <div style='max-height: 80px; overflow: scroll; overflow-x: hidden;'>${j.resume}</div></td>
+                    <td>
+                        <ul>
+                            <c:set var="total" value="0"/>
+                            <c:forEach var="l" items="${j.liens}">
+                                <li><a href="${l.libelle}" target='_blank'>Lien<c:set var="total" value="${total+1}"/>${total}</a></li>
+                            </c:forEach>
+                            
+                        </ul>
+                    </td>
                     <td>Tags</td>
                     <td>Actions</td>
                 </tr>
             </c:forEach>
         </tbody>
         <tfoot>
+            <tr>
+                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=reculerJeu#tableJeux'>Précédent</a></td>
+                <td colspan="5">${departJeu}-${departJeu+5}</td>
+                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=avancerJeu#tableJeux'>Suivant</a></td>
+            </tr>
         </tfoot>
       </table>
      <h3>Gestion des démos</h3>

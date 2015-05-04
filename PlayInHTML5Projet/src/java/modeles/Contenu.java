@@ -8,7 +8,9 @@ package modeles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,17 +29,18 @@ public class Contenu implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
     private String titre;
-    private String resume;
+    private StringBuilder resume;
     private String cheminImg; 
     private int typeContenu; //0=>jeu, 1=>Demo, 2=> Tutoriel
     
      
-    @OneToMany(mappedBy = "contenu")
+    @OneToMany(mappedBy = "contenu", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
     private Collection<Lien> liens;
  
     @ManyToMany
     private Collection<Tag> tags;
     public Contenu(){
+        super();
         this.liens = new ArrayList<>();
         this.tags = new ArrayList<>();
         
@@ -55,7 +58,8 @@ public class Contenu implements Serializable {
         return tags;
     }
 
-    public Contenu(String titre, String resume, String cheminImg, int typeContenu) {
+    public Contenu(String titre, StringBuilder resume, String cheminImg, int typeContenu) {
+        super();
         this.liens = new ArrayList<Lien>();
         this.tags = new ArrayList<Tag>();
         this.titre = titre;
@@ -81,11 +85,11 @@ public class Contenu implements Serializable {
         this.titre = titre;
     }
 
-    public String getResume() {
+    public StringBuilder getResume() {
         return resume;
     }
 
-    public void setResume(String resume) {
+    public void setResume(StringBuilder resume) {
         this.resume = resume;
     }
 
@@ -129,6 +133,8 @@ public class Contenu implements Serializable {
     public void addLien(Lien l){
         this.liens.add(l);
     }
+    
+   
    
 
     @Override

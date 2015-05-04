@@ -46,21 +46,23 @@ public class ServletAdministration extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
              String action = request.getParameter("action");        
              if(action!=null){
-                
                  if(action.equals("creer1000")){
                     this.gestionnaireUtilisateur.creer1000UtilisateursDeTest();
                     
                  }else if(action.equals("avancer")){
                      this.indiceCourantUtilisateur+=10;
-                     this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur);
                  }else if(action.equals("reculer")){
                      if(!(this.indiceCourantUtilisateur<=0))
                          this.indiceCourantUtilisateur-=10;
-                     this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur);
                  }else if(action.equals("supprimerU")){
                      this.gestionnaireUtilisateur.supprimerUtilisateur(request.getParameter("idU"));
-                 }else if(action.equals("creer10Jeux")){
-                     this.gestionnaireContenu.Creer10Jeux();
+                 }else if(action.equals("creerJeux")){
+                     this.gestionnaireContenu.CreerJeux();
+                 } else if(action.equals("avancerJeu")){
+                     this.indiceCourantJeu+=5;
+                 }else if(action.equals("reculerJeu")){
+                     if(!(this.indiceCourantJeu<=0))
+                         this.indiceCourantJeu-=5;   
                  }
              }
           
@@ -70,7 +72,8 @@ public class ServletAdministration extends HttpServlet {
              HttpSession session = request.getSession(true);
              session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur));
              session.setAttribute("depart", this.indiceCourantUtilisateur);
-             session.setAttribute("listeJeux", this.gestionnaireContenu.get10Jeux(indiceCourantJeu));
+             session.setAttribute("departJeu", this.indiceCourantJeu);
+             session.setAttribute("listeJeux", this.gestionnaireContenu.get5Jeux(indiceCourantJeu));
              response.sendRedirect("vueAdministration.jsp");
            
             

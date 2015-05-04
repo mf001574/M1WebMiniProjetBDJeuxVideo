@@ -44,7 +44,7 @@ div{
     min-height: 20px;
     max-height: 20px;
     line-height: 20px;
-    background-color: #0170BA;
+    background-color: #7EC5DF;
     color:white;
     font-size: 80%;
     margin-top: -6px;
@@ -73,7 +73,7 @@ div{
     font-size: 170%;
     font-style: italic;
     margin-left: 0px;
-    color:#0170BA;
+    color:#7EC5DF;
     vertical-align:middle;
 }
 
@@ -91,7 +91,7 @@ div{
 }
 .nav {
     height: 30px;
-    background-color: #DD4814;
+    background-color: #FF9155;
     margin-top: -15px;
 }
 .nav li{
@@ -139,7 +139,7 @@ div{
 }
 
 .content h2, .content h3{
-    color:#0170BA;   
+    color:#7EC5DF;   
     text-align: center;
     font-weight:normal;
 }
@@ -168,7 +168,7 @@ b{
     margin-left: 90px;
 }
 .content-left h3{
-    color:#0170BA;
+    color:#7EC5DF;
     font-weight:normal;
     text-align: center;
 }
@@ -177,10 +177,10 @@ b{
     margin-top: -5px !important;
 }
 input{
-    color:#0170BA;
+    color:#7EC5DF;
 }
 input[type="submit"]{
-  background-color:  #DD4814; 
+  background-color:  #D5CEC3; 
   color:white;
   border:none;
   min-width:100px;
@@ -190,12 +190,12 @@ input[type="submit"]{
   
 }
 input[type="submit"]:hover{
-  background-color: #FA5519;
+  background-color: #C1BCB3;
   transition: 1s;
 
 }
 .hideShowButton{
-  background-color:#0170BA; 
+  background-color:#7EC5DF; 
   color:white;
   border:none;
   font-size: 90%;
@@ -210,11 +210,14 @@ table {
     border-color:#0170BA;
     border-collapse:collapse;
     width: 100%;
-    text-align: center;
   
  }
 td,th { 
     font-weight: normal;
+    font-size: 70%;
+ }
+ th{
+     text-align: center;
  }
  tr:hover , tr:nth-child(2n):hover{
      background-color: rgba(1,112,186,0.2);
@@ -223,8 +226,12 @@ td,th {
      background-color: rgba(1,112,186,0.05);
  }
  th, tfoot td{
-     background-color:#0170BA;
+     background-color:#7EC5DF;
      color:white;
+     text-align: center;
+ }
+ td:last-child{
+     text-align: center;
  }
  td > a{
     color: white; 
@@ -232,7 +239,7 @@ td,th {
  }
 
  #msgConnexion, #msgApresConnexion{
-     color:#0170BA;
+     color:#7EC5DF;
      text-align: center;
      padding-top: 10px;
  }
@@ -242,4 +249,10 @@ td,th {
  }
  .formCentre{
      text-align: center;
+ }
+ table img{
+     width:60px;
+     height:60px;
+     border:solid 1px rgb(200,200,200);
+     border-radius: 3px;
  }

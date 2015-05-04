@@ -19,18 +19,19 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Lien implements Serializable {
-    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String libelle;
     @ManyToOne
-    private Contenu contenu;
+    private Contenu contenu; 
 
     public Lien() {
-       
+       super();
     }
     public Lien(String libelle) {
+        super();
         this.libelle = libelle;
     }
     
