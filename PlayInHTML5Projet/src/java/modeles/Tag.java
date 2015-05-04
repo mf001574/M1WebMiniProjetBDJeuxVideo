@@ -8,7 +8,6 @@ package modeles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,11 +23,10 @@ public class Tag implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    public Integer id;
     private String libelle;
-   /* @ManyToMany(mappedBy = "tags")
-    private ArrayList<Contenu> contenus = new ArrayList<Contenu>();
-    */
+    @ManyToMany(mappedBy = "tags")
+    private ArrayList<Contenu> contenus = new ArrayList<>();
     public Tag(){
         
     }
@@ -38,13 +36,13 @@ public class Tag implements Serializable {
 
     
 
-  /*  public Collection<Contenu> getContenus() {
+   public Collection<Contenu> getContenus() {
         return contenus;
     }
 
     public void setContenus(ArrayList<Contenu> contenus) {
         this.contenus = contenus;
-    }*/
+    }
     public String getLibelle() {
         return libelle;
     }
@@ -80,7 +78,7 @@ public class Tag implements Serializable {
         }
         return true;
     }
-
+  
     @Override
     public String toString() {
         return "modeles.Tag[ id=" + id + " ]";

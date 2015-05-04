@@ -143,6 +143,9 @@ div{
     text-align: center;
     font-weight:normal;
 }
+.content h3{
+    border-bottom: solid 1px;
+}
 
 hr{
     display: block; height: 1px;
@@ -235,5 +238,8 @@ td,th {
  }
  #msgInscription{
      color:#0170BA;
+     text-align: center;
+ }
+ .formCentre{
      text-align: center;
  }

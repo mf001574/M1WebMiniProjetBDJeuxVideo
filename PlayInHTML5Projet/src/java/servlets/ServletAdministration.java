@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import gestionnaires.GestionnaireContenu;
 import gestionnaires.GestionnaireUtilisateur;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +26,10 @@ import javax.servlet.http.HttpSession;
 public class ServletAdministration extends HttpServlet {
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
-    private int indiceCourant;
-    
+    @EJB
+    private GestionnaireContenu gestionnaireContenu; 
+    private int indiceCourantUtilisateur;
+    private int indiceCourantJeu;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,14 +51,16 @@ public class ServletAdministration extends HttpServlet {
                     this.gestionnaireUtilisateur.creer1000UtilisateursDeTest();
                     
                  }else if(action.equals("avancer")){
-                     this.indiceCourant+=10;
-                     this.gestionnaireUtilisateur.get10Users(this.indiceCourant);
+                     this.indiceCourantUtilisateur+=10;
+                     this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur);
                  }else if(action.equals("reculer")){
-                     if(!(this.indiceCourant<=0))
-                         this.indiceCourant-=10;
-                     this.gestionnaireUtilisateur.get10Users(this.indiceCourant);
+                     if(!(this.indiceCourantUtilisateur<=0))
+                         this.indiceCourantUtilisateur-=10;
+                     this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur);
                  }else if(action.equals("supprimerU")){
                      this.gestionnaireUtilisateur.supprimerUtilisateur(request.getParameter("idU"));
+                 }else if(action.equals("creer10Jeux")){
+                     this.gestionnaireContenu.Creer10Jeux();
                  }
              }
           
@@ -63,8 +68,9 @@ public class ServletAdministration extends HttpServlet {
             //RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
             //dp.forward(request, response);
              HttpSession session = request.getSession(true);
-             session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.get10Users(this.indiceCourant));
-             session.setAttribute("depart", this.indiceCourant);
+             session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur));
+             session.setAttribute("depart", this.indiceCourantUtilisateur);
+             session.setAttribute("listeContenu", this.gestionnaireContenu.get10Jeux(this.indiceCourantJeu));
              response.sendRedirect("vueAdministration.jsp");
            
             

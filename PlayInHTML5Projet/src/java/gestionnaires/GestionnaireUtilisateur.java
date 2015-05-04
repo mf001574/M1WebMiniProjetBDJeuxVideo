@@ -89,6 +89,7 @@ public class GestionnaireUtilisateur {
     public boolean supprimerUtilisateur(String login){
         Query q = em.createQuery("delete from Utilisateur u where u.id='"+login+"'");
         int nbsup = q.executeUpdate();
+        this.nbUtilisateurs -=nbsup;
         return nbsup>0;
     }
    

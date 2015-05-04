@@ -8,11 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${typeU  == 1}">
     <p>
-    <form method='post' action='ServletAdministration'>
-        <input type='hidden' name='action' value='creer1000'>
-        <input type='submit'  value='Créer 1000 utilisateurs'>
+    <h3><i class='fa fa-user'></i> Gestion des utilisateurs</h3>
+    <form method='post' class="formCentre" action='ServletAdministration'>
+        <p>
+            <input type='hidden' name='action' value='creer1000'>
+            <input type='submit'  value='Créer 1000 utilisateurs de test'>
+        </p>
     </form>
-    <table>
+    <table id='tableUtilisateur'>
         <thead>
             <tr>
                 <th>Identifiant</th>
@@ -22,7 +25,6 @@
             </tr>
         </thead>
         <tbody>
-        <h3>Liste des utilisateurs</h3>
             <c:forEach var="u" items="${listeUtilisateurs}">
                 <tr>
                     <td>${u.id}</td>
@@ -45,15 +47,44 @@
         </tbody>
         <tfoot>
             <tr>
-                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=reculer'>Précédent</a></td>
+                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=reculer#tableUtilisateur'>Précédent</a></td>
                 <td colspan="2">${depart}-${depart+9}</td>
-                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=avancer'>Suivant</a></td>
+                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=avancer#tableUtilisateur'>Suivant</a></td>
             </tr>
         </tfoot>
     </table>
-     <h3>Liste des jeux</h3>
-     <h3>Liste des démos</h3>
-     <h3>Liste des tutoriaux</h3>
+     <h3> <i class='fa fa-gamepad'></i> Gestion des jeux</h3>
+     <form method='post' class="formCentre" action='ServletAdministration'>
+        <p>
+            <input type='hidden' name='action' value='creer10Jeux'>
+            <input type='submit'  value='Créer 10 jeux aléatoirement'>
+        </p>
+    </form>
+    <form method='post' class="formCentre" action='ServletAdministration'>
+        <p>
+            <input type='hidden' name='action' value='creerJeux'>
+            <input type='submit'  value='Créer les jeux'>
+        </p>
+    </form>
+      <table id='tableJeux'>
+        <thead>
+            <tr>
+                <th>Identifiant</th>
+                <th>Titre</th>
+                <th>Résumé</th>
+                <th>Image</th>
+                <th>Liens</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table>
+     <h3>Gestion des démos</h3>
+     <h3>Gestion des tutoriaux</h3>
     </p>
 </c:if>
 <c:if test="${loginU == null || typeU==0}">

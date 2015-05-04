@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -26,23 +25,38 @@ public class Contenu implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    public Integer id;
     private String titre;
     private String resume;
     private String cheminImg; 
-    @OneToOne
-    private TypeContenu typeContenu;
-    
+    private int typeContenu; //0=>jeu, 1=>Demo, 2=> Tutoriel
+     
     @OneToMany(mappedBy = "contenu")
-    private ArrayList<Lien> liens = new ArrayList<Lien>();
-   /* @ManyToMany
-    private ArrayList<Tag> tags = new ArrayList<Tag>();
-    */
+    private ArrayList<Lien> liens;
+ 
+    @ManyToMany
+    private ArrayList<Tag> tags;
     public Contenu(){
+        this.liens = new ArrayList<>();
+        this.tags = new ArrayList<>();
         
     }
 
-    public Contenu(String titre, String resume, String cheminImg, TypeContenu typeContenu) {
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public ArrayList<Lien> getLiens() {
+        return liens;
+    }
+
+    public ArrayList<Tag> getTags() {
+        return tags;
+    }
+
+    public Contenu(String titre, String resume, String cheminImg, int typeContenu) {
+        this.liens = new ArrayList<Lien>();
+        this.tags = new ArrayList<Tag>();
         this.titre = titre;
         this.resume = resume;
         this.cheminImg = cheminImg;
@@ -50,11 +64,11 @@ public class Contenu implements Serializable {
     }
     
     
-    public TypeContenu getTypeContenu() {
+    public int getTypeContenu() {
         return typeContenu;
     }
 
-    public void setTypeContenu(TypeContenu typeContenu) {
+    public void setTypeContenu(int typeContenu) {
         this.typeContenu = typeContenu;
     }
     
@@ -82,16 +96,9 @@ public class Contenu implements Serializable {
         this.cheminImg = cheminImg;
     }
 
-    public Collection<Lien> getLiens() {
-        return liens;
-    }
 
     public void setLiens(ArrayList<Lien> liens) {
         this.liens = liens;
-    }
-
-   /* public Collection<Tag> getTags() {
-        return tags;
     }
 
     public void setTags(ArrayList<Tag> tags) {
@@ -105,9 +112,6 @@ public class Contenu implements Serializable {
     public void addLien(Tag t){
         this.tags.add(t);
     }
-    
-    */
-    
 
     public Integer getId() {
         return id;
@@ -131,7 +135,7 @@ public class Contenu implements Serializable {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
-    }
+    } 
 
     @Override
     public boolean equals(Object object) {
