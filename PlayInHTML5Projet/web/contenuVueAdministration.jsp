@@ -78,7 +78,18 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody
+            <c:forEach var="j" items="${listeJeux}">
+                <tr>
+                    <td>${j.id}</td>
+                    <td>${j.titre}</td>
+                    <td>${j.resume}</td>
+                    <td><img src="${j.cheminImg}" style='width:25px;height:25px;'></td>
+                    <td>Liens</td>
+                    <td>Tags</td>
+                    <td>Actions</td>
+                </tr>
+            </c:forEach>
         </tbody>
         <tfoot>
         </tfoot>

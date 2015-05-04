@@ -23,10 +23,10 @@ public class Tag implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer id;
+    private Integer id;
     private String libelle;
     @ManyToMany(mappedBy = "tags")
-    private ArrayList<Contenu> contenus = new ArrayList<>();
+    private Collection<Contenu> contenus = new ArrayList<>();
     public Tag(){
         
     }
@@ -40,7 +40,7 @@ public class Tag implements Serializable {
         return contenus;
     }
 
-    public void setContenus(ArrayList<Contenu> contenus) {
+    public void setContenus(Collection<Contenu> contenus) {
         this.contenus = contenus;
     }
     public String getLibelle() {

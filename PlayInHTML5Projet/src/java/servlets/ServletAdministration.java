@@ -70,7 +70,7 @@ public class ServletAdministration extends HttpServlet {
              HttpSession session = request.getSession(true);
              session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur));
              session.setAttribute("depart", this.indiceCourantUtilisateur);
-             session.setAttribute("listeContenu", this.gestionnaireContenu.get10Jeux(this.indiceCourantJeu));
+             session.setAttribute("listeJeux", this.gestionnaireContenu.get10Jeux(indiceCourantJeu));
              response.sendRedirect("vueAdministration.jsp");
            
             

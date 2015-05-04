@@ -53,9 +53,8 @@ public class GestionnaireContenu {
     
     public void Creer10Jeux(){
         for(int i=0;i<10;i++){
-            System.out.println("--->"+i);
             int indice = this.nbJeux + 1;
-            this.creerJeu("Jeu"+indice, "resumé...", "rssources/HTML5LOGO.png", 0);
+            this.creerJeu("Jeu"+indice, "Un jeu de test", "resources/HTML5LOGO.png", 0);
         }
        
     }
@@ -66,7 +65,8 @@ public class GestionnaireContenu {
     }
     
     public Collection<Contenu> get10Jeux(int depart){
-         Query q = em.createQuery("select c from Contenu c, TypeContenu t where t.id=c.typeContenu and t.libelle='jeu'");
+         Query q = em.createQuery("select c from Contenu c, TypeContenu t where t.id=c.typeContenu and t.libelle='jeu' order by c.id");
+         
          q.setFirstResult(depart);
          q.setMaxResults(10);
          return q.getResultList();

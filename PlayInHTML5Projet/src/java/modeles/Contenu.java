@@ -30,12 +30,13 @@ public class Contenu implements Serializable {
     private String resume;
     private String cheminImg; 
     private int typeContenu; //0=>jeu, 1=>Demo, 2=> Tutoriel
+    
      
     @OneToMany(mappedBy = "contenu")
-    private ArrayList<Lien> liens;
+    private Collection<Lien> liens;
  
     @ManyToMany
-    private ArrayList<Tag> tags;
+    private Collection<Tag> tags;
     public Contenu(){
         this.liens = new ArrayList<>();
         this.tags = new ArrayList<>();
@@ -46,11 +47,11 @@ public class Contenu implements Serializable {
         return serialVersionUID;
     }
 
-    public ArrayList<Lien> getLiens() {
+    public Collection<Lien> getLiens() {
         return liens;
     }
 
-    public ArrayList<Tag> getTags() {
+    public Collection<Tag> getTags() {
         return tags;
     }
 
@@ -97,11 +98,11 @@ public class Contenu implements Serializable {
     }
 
 
-    public void setLiens(ArrayList<Lien> liens) {
+    public void setLiens(Collection<Lien> liens) {
         this.liens = liens;
     }
 
-    public void setTags(ArrayList<Tag> tags) {
+    public void setTags(Collection<Tag> tags) {
         this.tags = tags;
     }
      
