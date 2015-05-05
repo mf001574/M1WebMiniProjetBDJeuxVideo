@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -27,7 +28,7 @@ public class Contenu implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer id;
+    private Integer id;
     private String titre;
     private StringBuilder resume;
     private String cheminImg; 
@@ -115,7 +116,7 @@ public class Contenu implements Serializable {
     }
 
     public void addTag(Tag t){
-        this.tags.add(t);
+       this.tags.add(t);
     }
     
     public void addLien(Tag t){

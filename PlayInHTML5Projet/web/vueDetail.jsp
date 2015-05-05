@@ -5,6 +5,6 @@
 --%>
 
 <jsp:include page="template.jsp">
-	<jsp:param name="content" value="contenuVueJeu"/>
-	<jsp:param name="title" value="Jeux disponibles"/>
+	<jsp:param name="content" value="contenuVueDetail"/>
+	<jsp:param name="title" value="Datail Jeu"/>
 </jsp:include>

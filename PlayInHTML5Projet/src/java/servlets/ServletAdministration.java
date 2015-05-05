@@ -29,11 +29,9 @@ public class ServletAdministration extends HttpServlet {
     private GestionnaireUtilisateur gestionnaireUtilisateur;
     @EJB
     private GestionnaireContenu gestionnaireContenu; 
-    @EJB
-    private GestionnaireTag gestionnaireTag; 
-    
     private int indiceCourantUtilisateur;
     private int indiceCourantJeu;
+    private int indiceCourantDemo;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,6 +65,13 @@ public class ServletAdministration extends HttpServlet {
                  }else if(action.equals("reculerJeu")){
                      if(!(this.indiceCourantJeu<=0))
                          this.indiceCourantJeu-=5;   
+                 }else if(action.equals("creerDemo")){
+                     this.gestionnaireContenu.creerDemos();
+                 }else if(action.equals("avancerDemo")){
+                     this.indiceCourantDemo+=5;
+                 }else if(action.equals("reculerDemo")){
+                     if(!(this.indiceCourantDemo<=0))
+                         this.indiceCourantDemo-=5; 
                  }
              }
           
@@ -77,7 +82,10 @@ public class ServletAdministration extends HttpServlet {
              session.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.get10Users(this.indiceCourantUtilisateur));
              session.setAttribute("depart", this.indiceCourantUtilisateur);
              session.setAttribute("departJeu", this.indiceCourantJeu);
+             session.setAttribute("departDemo", this.indiceCourantDemo);
              session.setAttribute("listeJeux", this.gestionnaireContenu.get5Jeux(indiceCourantJeu));
+             session.setAttribute("listeDemos", this.gestionnaireContenu.get5Demos(this.indiceCourantDemo));
+             
              response.sendRedirect("vueAdministration.jsp");
            
             

@@ -14,7 +14,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.criteria.Join;
 
 /**
  *
@@ -27,12 +30,14 @@ public class Tag implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String libelle;
-    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "tags",cascade = CascadeType.PERSIST)
-    private Collection<Contenu> contenus = new ArrayList<>();
+   @ManyToMany(fetch = FetchType.EAGER,mappedBy = "tags",cascade = CascadeType.PERSIST)
+    private Collection<Contenu> contenus;
     public Tag(){
+        this.contenus = new ArrayList<>();
         
     }
     public Tag(String libelle) {
+        this.contenus = new ArrayList<>();
         this.libelle = libelle;
     }
 
@@ -78,6 +83,7 @@ public class Tag implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+     
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Tag)) {
             return false;

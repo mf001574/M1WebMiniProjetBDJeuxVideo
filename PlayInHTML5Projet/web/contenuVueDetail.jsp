@@ -5,7 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<a href='ServletJeu' style='float:left;color:#7EC5DF;font-size: 70%;margin-top:-15px; '>Retour</a>
+<a href='ServletContenu' style='float:left;color:#7EC5DF;font-size: 70%;margin-top:-15px; '>Retour</a>
 <div class='contenu' style='margin:5;margin-top:30px;padding:5px; background-color: rgba(240,240,240,0.8); min-height: 200px;'>
    <h3 style="margin-top:0px;border:none;color:#FF9155;">${contenu.titre}</h3>
    <img src='${contenu.cheminImg}' style='float: left;margin-top:-15px; width:150px;height:150px;border-radius: 3px; border:1px rgb(200,200,200);margin-left:8px; '>

@@ -94,6 +94,7 @@ div{
     background-color: #FF9155;
     margin-top: -15px;
 }
+
 .nav li{
     display : table-cell;
 }
@@ -273,3 +274,4 @@ td,th {
     background-color: #A61616;
     transition:1s;
  }
+ 

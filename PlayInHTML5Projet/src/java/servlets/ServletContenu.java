@@ -22,8 +22,8 @@ import modeles.Contenu;
  *
  * @author florian
  */
-@WebServlet(name = "ServletJeu", urlPatterns = {"/ServletJeu"})
-public class ServletJeu extends HttpServlet {
+@WebServlet(name = "ServletContenu", urlPatterns = {"/ServletContenu"})
+public class ServletContenu extends HttpServlet {
     
     
       @EJB
@@ -38,7 +38,7 @@ public class ServletJeu extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     */ 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -47,21 +47,21 @@ public class ServletJeu extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");  
             if(action!=null){
-                if(action.equals("avancerJeu")){
+                if(action.equals("avancer")){
                     this.depart+=5;
-                }else if(action.equals("reculerJeu") && this.depart>0){
+                }else if(action.equals("reculer") && this.depart>0){
                     this.depart-=5;
                 }else if(action.equals("afficherDetail")){
                     session.setAttribute("contenu", this.gestionnaireContenu.getContenu(request.getParameter("id")));
-                    response.sendRedirect("vueContenu.jsp");
+                    response.sendRedirect("vueDetail.jsp");
                     return;
                 }
             }
             
-             session.setAttribute("listeJeux2", this.gestionnaireContenu.get5Jeux(this.depart));
+             session.setAttribute("listeContenu", this.gestionnaireContenu.get5Contenu(this.depart));
             
              session.setAttribute("departJeu", this.depart);
-             response.sendRedirect("vueJeu.jsp");
+             response.sendRedirect("vueToutContenu.jsp");
         }
         
        

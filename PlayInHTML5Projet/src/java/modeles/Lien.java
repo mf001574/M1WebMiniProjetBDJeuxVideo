@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -26,6 +27,8 @@ public class Lien implements Serializable {
     private String libelle;
     @ManyToOne
     private Contenu contenu; 
+    
+    
 
     public Lien() {
        super();
