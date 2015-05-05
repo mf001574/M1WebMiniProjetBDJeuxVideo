@@ -12,7 +12,7 @@
     <form method='post' class="formCentre" action='ServletAdministration'>
         <p>
             <input type='hidden' name='action' value='creer1000'>
-            <input type='submit'  value='Créer 1000 utilisateurs de test'>
+            <input type='submit'  value='Générer 1000 utilisateurs de test'>
         </p>
     </form>
     <table id='tableUtilisateur'>
@@ -57,7 +57,7 @@
     <form method='post' class="formCentre" action='ServletAdministration'>
         <p>
             <input type='hidden' name='action' value='creerJeux'>
-            <input type='submit'  value='Créer les jeux'>
+            <input type='submit'  value='Générer les jeux'>
         </p>
     </form>
       <table id='tableJeux'>
@@ -88,8 +88,20 @@
                             
                         </ul>
                     </td>
-                    <td>Tags</td>
-                    <td>Actions</td>
+                    <td>
+                        <ul>
+                        <c:forEach var="li" items="${j.tags}">
+                            <li>${li.libelle}<br/></li>
+                        </c:forEach>
+                        </ul>
+                    </td>
+                    <td>
+                        <form method='post' action='ServletAdministration'>
+                            <input type="hidden" name="idU" value="${j.id}">
+                            <input type="hidden" name="action" value="supprimerJ">
+                            <input type="submit" value="Supprimer">
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>

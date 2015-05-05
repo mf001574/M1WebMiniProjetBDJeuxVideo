@@ -37,7 +37,7 @@ public class Contenu implements Serializable {
     @OneToMany(mappedBy = "contenu", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
     private Collection<Lien> liens;
  
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private Collection<Tag> tags;
     public Contenu(){
         super();
@@ -113,6 +113,10 @@ public class Contenu implements Serializable {
     public void removeTag(Tag t){
         this.tags.remove(t);
     }
+
+    public void addTag(Tag t){
+        this.tags.add(t);
+    }
     
     public void addLien(Tag t){
         this.tags.add(t);
@@ -134,9 +138,6 @@ public class Contenu implements Serializable {
         this.liens.add(l);
     }
     
-   
-   
-
     @Override
     public int hashCode() {
         int hash = 0;

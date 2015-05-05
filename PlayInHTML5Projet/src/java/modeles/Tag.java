@@ -8,7 +8,9 @@ package modeles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +27,7 @@ public class Tag implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String libelle;
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "tags",cascade = CascadeType.PERSIST)
     private Collection<Contenu> contenus = new ArrayList<>();
     public Tag(){
         
@@ -58,6 +60,14 @@ public class Tag implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+    
+    public void addContenu(Contenu c){
+        this.contenus.add(c);
+    }
+    public void removeContenu(Contenu c){
+        this.contenus.remove(c);
+    }
+
 
     @Override
     public int hashCode() {

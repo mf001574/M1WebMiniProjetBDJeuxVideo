@@ -5,6 +5,7 @@
  */
 package gestionnaires;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modeles.Contenu;
 import modeles.Lien;
+import modeles.Tag;
 
 
 
@@ -24,6 +26,7 @@ public class GestionnaireContenu {
     @PersistenceContext
     private EntityManager em; 
     private int nbJeux = 0;
+    private ArrayList<Tag> listeTag;
 
     public EntityManager getEm() {
         return em;
@@ -48,8 +51,19 @@ public class GestionnaireContenu {
         Contenu j = new Contenu(titre,resume,cheminImg,type);
         return j;
     }
+    public void CreerTags(){
+        this.listeTag = new ArrayList<Tag>();
+        Tag t;
+        String[] nomTags = {"Jeu","Tutoriel","Demo","Aventure","Sport","Action","Arcade"};
+        for(String tag : nomTags){
+            t= new Tag(tag);
+            em.persist(t);
+            this.listeTag.add(t);
+        } 
+    }
     
     public void CreerJeux(){
+        this.CreerTags();
         Contenu j = this.creerJeu("Canvas Rider", new StringBuilder("Reprise du fameux Line Rider, Canvas Rider nous emmène à vélo dans un monde linéaire où la physique sera à la fois votre amie et votre ennemie."), "resources/canvasRider.png", 0);
         j.setTypeContenu(0);
         Lien l = new Lien("http://canvasrider.com/");
@@ -58,7 +72,11 @@ public class GestionnaireContenu {
         l = new Lien("http://www.jeux-en-html5.fr/jeu/canvas-rider");
         l.setContenu(j);
         j.addLien(l);
-        em.persist(j);
+        j.addTag(this.listeTag.get(4));
+        this.listeTag.get(4).addContenu(j);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
+        em.persist(j);   
         
         j = this.creerJeu("Angry Birds", new StringBuilder("Les cochons ont dérobé les oeufs des oiseaux. Ils sont donc en colère " + 
 "Pour les récupérer, vous devez adroitement envoyer les oiseaux au bon endroit pour dégommer les cochons et marquer un maximum de points." +
@@ -67,6 +85,8 @@ public class GestionnaireContenu {
         l= new Lien("http://www.jeux-en-html5.fr/jeu/angry-birds");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
          j = this.creerJeu("StarPutt", new StringBuilder("Il s'agit avant tout d'un jeu de mini golf.\n" +
@@ -79,6 +99,8 @@ public class GestionnaireContenu {
         l= new Lien("http://www.jeux-en-html5.fr/jeu/starputt");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
          
         j = this.creerJeu("Infinite Mario", new StringBuilder("Redécouvrez ce jeu mythique, dans une version spécialement retravaillée en HTML5, tout à fait jouable.\n" +
@@ -87,6 +109,8 @@ public class GestionnaireContenu {
         l= new Lien("http://jeu.info/mario-bros-infini.html");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
          j = this.creerJeu("Creatures and Castles", new StringBuilder("Voici un jeu de stratégie à l'ambiance médiévale. Vous incarnez un héros en quête de liberté, emprisonné dans un château peuplé de trois types d'ennemis.\n" +
@@ -96,6 +120,8 @@ public class GestionnaireContenu {
         l= new Lien("http://creaturesandcastles.hiive.com/");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
         
@@ -107,6 +133,8 @@ public class GestionnaireContenu {
         l= new Lien("http://musiccanbefun.edankwan.com/");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
         j = this.creerJeu("Space Maze", new StringBuilder("Labyrinthe dans l'espace"), "resources/HTML5LOGO.png", 0);
@@ -114,6 +142,8 @@ public class GestionnaireContenu {
         l= new Lien("http://www.jeux-html5.net/games.php?id=267");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
         j = this.creerJeu("Mack Jetpack", new StringBuilder("Jeu où vous contrôllez un jetpack"), "resources/jetpack.jpeg", 0);
@@ -121,6 +151,8 @@ public class GestionnaireContenu {
         l= new Lien("http://www.jeux-html5.net/games.php?id=279");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
         j = this.creerJeu("Biolab Disaster", new StringBuilder(" Ce petit jeu de plateforme peut sembler un peu trop pixelisé au début, mais sa jouabilité et son ambiance sonore sont réellement bluffants.\n" +
@@ -135,6 +167,8 @@ public class GestionnaireContenu {
         l= new Lien("http://playbiolab.com/");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
         j = this.creerJeu("Snaky 360", new StringBuilder("C'est un jeu de serpent possédant de nombreux niveaux, tous très variés, avec des modes de jeux différents, un système de médailles, d'insignes, de progression, etc.\n" +
@@ -145,6 +179,8 @@ public class GestionnaireContenu {
         l= new Lien("http://www.jeux-en-html5.fr/jeu/snaky-360");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
         
         j = this.creerJeu("wArp", new StringBuilder("Dans ce jeu de plateformes, vous incarnez un petit robot bionique qui doit survivre parmi les différents niveaux du jeu.\n" +
@@ -156,6 +192,8 @@ public class GestionnaireContenu {
         l= new Lien("http://www.ascendedarcade.com/games/wArp/");
         l.setContenu(j);
         j.addLien(l);
+        j.addTag(this.listeTag.get(0));
+        this.listeTag.get(4).addContenu(j); 
         em.persist(j);
      
        

@@ -6,5 +6,5 @@
 
 <jsp:include page="template.jsp">
 	<jsp:param name="content" value="contenuVueJeu"/>
-	<jsp:param name="title" value="Liste des jeux"/>
+	<jsp:param name="title" value="Jeux disponibles"/>
 </jsp:include>

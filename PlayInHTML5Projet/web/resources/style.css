@@ -176,14 +176,14 @@ b{
     text-align: center;
     margin-top: -5px !important;
 }
-input{
+input,textarea, select{
     color:#7EC5DF;
 }
 input[type="submit"]{
   background-color:  #D5CEC3; 
   color:white;
   border:none;
-  min-width:100px;
+  min-width:50px;
   height: 35px;
   font-size: 90%;
   border-radius: 3px;
