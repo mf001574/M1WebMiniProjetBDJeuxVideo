@@ -4,14 +4,80 @@
     Author     : florian
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
-    <p>
+   
+    <c:if test="${loginU == null}">
+     <p>
         Le site <b>PlayInHTML5</b> vous permet d'accéder au différents jeux implémentés
         en <b> HTML5 </b>. Vous trouverez également des démos ainsi que différents tutoriaux concernant la création de jeu. 
     </p>
     <p>
            N'attendez pas inscrivez vous!
     </p>
+    </c:if>
+    <c:if test="${loginU != null}">
+         <p>
+        Le site <b>PlayInHTML5</b> vous permet d'accéder au différents jeux implémentés
+        en <b> HTML5 </b>. Vous trouverez également des démos ainsi que différents tutoriaux concernant la création de jeu. 
+        </p>
+        <p>
+           N'attendez pas inscrivez vous!
+        </p>
+        <form method="post" action="ServletIndex" class="formCentre">
+            <h3>Recherche multicritères</h3>
+            <input type="hidden" name="action" value="rechercher">
+            <p><input type="text" name="titre" placeholder="Titre"></p>
+            <p>
+                <c:forEach var="t" items="${ListeTags}">
+                     <label>${t.libelle}</label><input type="checkbox" name="tags" value="${t.id}">
+                </c:forEach>
+            </p>
+            <input type="submit" value="Rechercher">
+        </form>
+        <c:if test="${resultatRecherche!=null}">
+            <table id='tableJeux'>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Titre</th>
+                        <th>Tags</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody
+                    <c:forEach var="j" items="${listeJeux2}">
+                        <tr>
+                            <td><img src="${j.cheminImg}"></td>
+                            <td>${j.titre}</td>
+
+                            <td>
+                                <ul>
+                                <c:forEach var="li" items="${j.tags}"> 
+                                    <li>${li.libelle}</li>
+                                </c:forEach>
+                                </ul>
+                            </td>
+                            <td>
+                                <a href="ServletJeu?action=afficherDetail&id=${j.id}" style="color:#7EC5DF; text-decoration:underline;">Plus de détail</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><a href='${pageContext.request.contextPath}/ServletJeu?action=reculerJeu#tableJeux'>Précédent</a></td>
+                        <td colspan="2">${departJeu}-${departJeu+5}</td>
+                        <td><a href='${pageContext.request.contextPath}/ServletJeu?action=avancerJeu#tableJeux'>Suivant</a></td>
+                    </tr>
+                </tfoot>
+      </table>
+            <c:forEach var="r" items="${resultatRecherche}">
+              
+            </c:forEach>
+            
+        </c:if>
+        
+    </c:if>
     

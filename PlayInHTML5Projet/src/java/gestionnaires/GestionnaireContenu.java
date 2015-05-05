@@ -211,5 +211,20 @@ public class GestionnaireContenu {
          q.setMaxResults(5);
          return q.getResultList();
     }
+
+    public Contenu getContenu(String id) {
+         Query q = em.createQuery("select c from Contenu c where c.id='"+id+"'");
+         Collection<Contenu> c = (Collection<Contenu>) q.getResultList();
+         if(!c.isEmpty()){
+             return c.iterator().next();
+         }
+         return null;
+         
+    }
+
+    public Collection<Contenu> rechercher(String nom, String tags) {
+      Query q = em.createQuery("select c from Contenu c");
+      return q.getResultList();
+    }
    
 }

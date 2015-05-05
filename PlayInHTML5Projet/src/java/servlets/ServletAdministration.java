@@ -6,6 +6,7 @@
 package servlets;
 
 import gestionnaires.GestionnaireContenu;
+import gestionnaires.GestionnaireTag;
 import gestionnaires.GestionnaireUtilisateur;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,6 +29,9 @@ public class ServletAdministration extends HttpServlet {
     private GestionnaireUtilisateur gestionnaireUtilisateur;
     @EJB
     private GestionnaireContenu gestionnaireContenu; 
+    @EJB
+    private GestionnaireTag gestionnaireTag; 
+    
     private int indiceCourantUtilisateur;
     private int indiceCourantJeu;
 

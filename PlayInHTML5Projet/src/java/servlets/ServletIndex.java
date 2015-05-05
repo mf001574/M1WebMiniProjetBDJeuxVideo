@@ -5,13 +5,17 @@
  */
 package servlets;
 
+import gestionnaires.GestionnaireContenu;
+import gestionnaires.GestionnaireTag;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,6 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletIndex", urlPatterns = {"/ServletIndex"})
 public class ServletIndex extends HttpServlet {
+     @EJB
+        private GestionnaireTag gestionnaireTags;
+     @EJB
+        private GestionnaireContenu gestionnaireContenu;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,13 +41,15 @@ public class ServletIndex extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
+         HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
              String action = request.getParameter("action");
              if(action!=null){
-                 
+                 if(action.equals("rechercher")){
+                    session.setAttribute("resultatRecherche", this.gestionnaireContenu.rechercher(request.getParameter("titre"),request.getParameter("tags")));
+                 }
              }
-            /*RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
-            dp.forward(request, response);*/
+            session.setAttribute("ListeTags", this.gestionnaireTags.getTags());
             response.sendRedirect("vueAccueil.jsp");
         }
     }

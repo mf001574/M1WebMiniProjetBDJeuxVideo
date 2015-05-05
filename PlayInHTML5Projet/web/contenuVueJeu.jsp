@@ -5,20 +5,43 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${loginU != null}">
-    <form method="post" action="ServletJeu" class="formCentre">
-        <input type="hidden" name="action" value="listerJeux">
-        <p><input type="text" name="titre" placeholder="Titre"></p>
-        <button class="hideShowButton">+</button>
-        <p>
-            <select required>
-               <option value="" disabled selected>Selectionnez un tag </option>
-            </select>
-        </p>
-        <input type="submit" value="Rechercher">
-    </form>
-    <div class='DescriptionJeu'>
-        
-    </div>
+    
+    <table id='tableJeux'>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody
+            <c:forEach var="j" items="${listeJeux2}">
+                <tr>
+                    <td><img src="${j.cheminImg}"></td>
+                    <td>${j.titre}</td>
+                    
+                    <td>
+                        <ul>
+                        <c:forEach var="li" items="${j.tags}"> 
+                            <li>${li.libelle}</li>
+                        </c:forEach>
+                        </ul>
+                    </td>
+                    <td>
+                        <a href="ServletJeu?action=afficherDetail&id=${j.id}" style="color:#7EC5DF; text-decoration:underline;">Plus de détail</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><a href='${pageContext.request.contextPath}/ServletJeu?action=reculerJeu#tableJeux'>Précédent</a></td>
+                <td colspan="2">${departJeu}-${departJeu+5}</td>
+                <td><a href='${pageContext.request.contextPath}/ServletJeu?action=avancerJeu#tableJeux'>Suivant</a></td>
+            </tr>
+        </tfoot>
+      </table>
                
 </c:if>
 <c:if test="${loginU == null}">

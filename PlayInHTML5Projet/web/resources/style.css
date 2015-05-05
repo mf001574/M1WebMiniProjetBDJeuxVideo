@@ -244,7 +244,7 @@ td,th {
      padding-top: 10px;
  }
  #msgInscription{
-     color:#0170BA;
+     color:#7EC5DF;
      text-align: center;
  }
  .formCentre{
@@ -255,4 +255,21 @@ td,th {
      height:60px;
      border:solid 1px rgb(200,200,200);
      border-radius: 3px;
+ }
+ label{
+      color:#7EC5DF;
+ }
+ 
+ #tagsZone li{
+     display: inline-block;
+     background-color: #FF9155;
+     color:white;
+     padding:5px;
+     min-width: 50px;
+     text-align: center;
+     border-radius: 5px;
+ }
+ #tagsZone li:hover{
+    background-color: #A61616;
+    transition:1s;
  }
