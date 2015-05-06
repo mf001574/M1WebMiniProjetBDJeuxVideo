@@ -6,5 +6,5 @@
 
 <jsp:include page="template.jsp">
 	<jsp:param name="content" value="contenuVueRecherche"/>
-	<jsp:param name="title" value="Recherche multicritères"/>
+	<jsp:param name="title" value="Recherche par login"/>
 </jsp:include>

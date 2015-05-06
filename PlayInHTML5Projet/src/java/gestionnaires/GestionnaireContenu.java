@@ -383,10 +383,11 @@ public class GestionnaireContenu {
       }*/
       if(tag!=null){
        
-        requete="select c from Contenu c join Tag t where c.titre like '%"+nom+"%'  and t.id='"+tag+"' "; 
+        //requete="select c from Contenu c join Tag t where c.titre like '%"+nom+"%'  and t.id='"+tag+"' "; 
+          requete="select t.contenus from Tag t where t.id='"+tag+"'";
       }
       
-      requete+=" order by c.id";
+      //requete+=" order by c.id";
       
       System.out.println(requete);
       Query q = em.createQuery(requete);

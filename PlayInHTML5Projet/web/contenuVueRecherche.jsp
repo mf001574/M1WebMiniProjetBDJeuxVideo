@@ -8,12 +8,18 @@
     <p>
 <form method="post" action="ServletRecherche" class="formCentre">
             <input type="hidden" name="action" value="rechercher">
-            <p><input type="text" name="titre" placeholder="Titre"></p>
+            <p><input type="text" name="titre" placeholder="Titre" required=""></p>
+            <input type="submit" value="Rechercher">
+</form>
+            <h2> Recherche par tag </h2>
+<form method="post" action="ServletRecherche" class="formCentre">
+            <input type="hidden" name="action" value="rechercher">
             <p>
                 <c:forEach var="t" items="${ListeTags}">
                      <label>${t.libelle}</label><input type="radio" name="tags" value="${t.id}">
                 </c:forEach>
             </p>
+           
             <input type="submit" value="Rechercher">
 </form>
 </p>
