@@ -32,6 +32,7 @@ public class ServletAdministration extends HttpServlet {
     private int indiceCourantUtilisateur;
     private int indiceCourantJeu;
     private int indiceCourantDemo;
+    private int indiceCourantTuto;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,6 +49,7 @@ public class ServletAdministration extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
              String action = request.getParameter("action");        
              if(action!=null){
+                
                  if(action.equals("creer1000")){
                     this.gestionnaireUtilisateur.creer1000UtilisateursDeTest();
                     
@@ -56,9 +58,7 @@ public class ServletAdministration extends HttpServlet {
                  }else if(action.equals("reculer")){
                      if(!(this.indiceCourantUtilisateur<=0))
                          this.indiceCourantUtilisateur-=10;
-                 }else if(action.equals("supprimerU")){
-                     this.gestionnaireUtilisateur.supprimerUtilisateur(request.getParameter("idU"));
-                 }else if(action.equals("creerJeux")){
+                }else if(action.equals("creerJeux")){
                      this.gestionnaireContenu.CreerJeux();
                  } else if(action.equals("avancerJeu")){
                      this.indiceCourantJeu+=5;
@@ -72,6 +72,18 @@ public class ServletAdministration extends HttpServlet {
                  }else if(action.equals("reculerDemo")){
                      if(!(this.indiceCourantDemo<=0))
                          this.indiceCourantDemo-=5; 
+                 }else if(action.equals("creerTuto")){
+                     this.gestionnaireContenu.creerTutoriaux();
+                 }else if(action.equals("avancerTuto")){
+                     this.indiceCourantTuto+=5;
+                 }else if(action.equals("reculerTuto")){
+                     if(!(this.indiceCourantTuto<=0))
+                         this.indiceCourantTuto-=5; 
+                 }else if(action.equals("supprimer")){
+                     this.gestionnaireContenu.supprimerContenu(request.getParameter("id"));
+                 }else if(action.equals("supprimerU")){
+                     
+                     this.gestionnaireUtilisateur.supprimerUtilisateur(request.getParameter("id"));
                  }
              }
           
@@ -83,8 +95,10 @@ public class ServletAdministration extends HttpServlet {
              session.setAttribute("depart", this.indiceCourantUtilisateur);
              session.setAttribute("departJeu", this.indiceCourantJeu);
              session.setAttribute("departDemo", this.indiceCourantDemo);
+              session.setAttribute("departTuto", this.indiceCourantTuto);
              session.setAttribute("listeJeux", this.gestionnaireContenu.get5Jeux(indiceCourantJeu));
              session.setAttribute("listeDemos", this.gestionnaireContenu.get5Demos(this.indiceCourantDemo));
+             session.setAttribute("listeTutos", this.gestionnaireContenu.get5Tutos(this.indiceCourantTuto));
              
              response.sendRedirect("vueAdministration.jsp");
            

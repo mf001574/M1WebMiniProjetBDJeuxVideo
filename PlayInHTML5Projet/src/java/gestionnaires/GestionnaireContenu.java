@@ -28,7 +28,7 @@ public class GestionnaireContenu {
     private EntityManager em; 
     private int nbJeux = 0;
     private HashMap<String,Tag> listeTag;
-    private String[] nomTags = {"Jeu","Tutoriel","Démo","Aventure","Sport","Action","Arcade","Réflexion","Musique","Jeu de plateforme","Snake"};
+    private String[] nomTags = {"Jeu","Tutoriel","Démo","Aventure","Sport","Action","Arcade","Réflexion","Musique","Jeu de plateforme","Snake","Tutoriel","Phaser","Quintus"};
     
 
     public GestionnaireContenu(){
@@ -309,16 +309,42 @@ public class GestionnaireContenu {
         if(this.listeTag.isEmpty()){
             this.CreerTags(); 
         }
-        if(!this.get5Demos(0).isEmpty()){
+        if(!this.get5Tutos(0).isEmpty()){
             return;
         }
-        Contenu d = new Contenu("Démo QuakeII",new StringBuilder("Le moteur graphique de Quake II a été recréé entièrement en javascript avec Google Web Toolkit. Pour réussir cet exploit, ils les technologies suivantes ont été utilisé (WebGL (pour la 3D) et WebSockets (pour le mode multijoueur)). Le résultat est assez bluffant"),"resources/QuakeII.jpg",1);
-        Lien l = new Lien("http://korben.info/demo-webgl.html");
+        Contenu d = new Contenu("Tutorial Phaser : Creation d'un Flappy Bird",new StringBuilder("Phaser est un framework javascript qui vous permettra de créer plus facilement votre jeu 2D avec un rendu graphique WebGL ou Canvas. En effet, il intègre une gestion de plusieurs éléments nécessaires dans un jeu vidéo, ce qui vous permettra d’avancer plus rapidement dans le développement sans être obligé de tout réinventer."),"resources/phaser-flappyBird.png",2);
+        Lien l = new Lien("http://www.soluka.fr/blog/jeux/phaser-creer-flappy-bird-en-html5-canvas/");
         l.setContenu(d);
         d.addLien(l);
-        d.addTag(this.listeTag.get("Démo"));
-        this.listeTag.get("Démo").addContenu(d);
+        d.addTag(this.listeTag.get("Tutoriel"));
+        this.listeTag.get("Tutoriel").addContenu(d);
+        d.addTag(this.listeTag.get("Phaser"));
+        this.listeTag.get("Phaser").addContenu(d);
         em.merge(d);
+        
+        d = new Contenu("Créer un jeu HTML5 avec Quintus ",new StringBuilder("Ce tutoriel s'adresse à tout le monde, débutants comme développeurs aguerris : j'ai donc fait en sorte d'être le plus explicite possible. Si vous n'y connaissez rien en développement de jeux vidéos, ne vous inquiétez pas, je n'en avais moi-même jamais développé avant de découvrir Quintus !"),"resources/quintus.png",2);
+        l = new Lien("https://zestedesavoir.com/tutoriels/234/creer-un-jeu-html5-avec-quintus/");
+        l.setContenu(d);
+        d.addLien(l);
+        l = new Lien("http://www.html5quintus.com/");
+        l.setContenu(d);
+        d.addLien(l);
+        d.addTag(this.listeTag.get("Tutoriel"));
+        this.listeTag.get("Tutoriel").addContenu(d);
+        d.addTag(this.listeTag.get("Quintus"));
+        this.listeTag.get("Quintus").addContenu(d);
+        em.merge(d);
+        
+        d = new Contenu("Réaliser son premier jeu en HTML 5 / Javascript avec EaselJS",new StringBuilder("L’essentiel de la réalisation d’un jeu se compose d’interactions et d’effets visuels. Pour toute animations nous utiliserons la technique des Sprites. "),"resources/HTML5LOGO.png",2);
+        l = new Lien("https://zestedesavoir.com/tutoriels/234/creer-un-jeu-html5-avec-quintus/");
+        l.setContenu(d);
+        d.addLien(l);
+       
+        d.addTag(this.listeTag.get("Tutoriel"));
+        this.listeTag.get("Tutoriel").addContenu(d);
+        em.merge(d);
+        
+        
     }
     public Collection<Contenu> getJeux(){
         Query q = em.createQuery("select c from Contenu c where c.typeContenu=0 order by c.id ");
@@ -358,6 +384,19 @@ public class GestionnaireContenu {
         q.setFirstResult(depart);
         q.setMaxResults(5);
         return q.getResultList();
+    }
+     
+    public Collection<Contenu> get5Tutos(int depart) {
+        Query q = em.createQuery("select c from Contenu c where c.typeContenu=2 order by c.id");
+        q.setFirstResult(depart);
+        q.setMaxResults(5);
+        return q.getResultList();
+    }
+    
+    public int supprimerContenu(String id){
+        Query q = em.createQuery("delete from Contenu c where c.id='"+id+"'");
+        int nbsup = q.executeUpdate();
+        return nbsup;
     }
    
 }

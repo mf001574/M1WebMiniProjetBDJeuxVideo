@@ -37,7 +37,7 @@
                     </c:if>
                     <td>
                         <form method='post' action='ServletAdministration'>
-                            <input type="hidden" name="idU" value="${u.id}">
+                            <input type="hidden" name="id" value="${u.id}">
                             <input type="hidden" name="action" value="supprimerU">
                             <input type="submit" value="Supprimer">
                         </form>       
@@ -97,8 +97,8 @@
                     </td>
                     <td>
                         <form method='post' action='ServletAdministration'>
-                            <input type="hidden" name="idU" value="${j.id}">
-                            <input type="hidden" name="action" value="supprimerJ">
+                            <input type="hidden" name="id" value="${j.id}">
+                            <input type="hidden" name="action" value="supprimer">
                             <input type="submit" value="Supprimer">
                         </form>
                     </td>
@@ -157,8 +157,8 @@
                     </td>
                     <td>
                         <form method='post' action='ServletAdministration'>
-                            <input type="hidden" name="idU" value="${j.id}">
-                            <input type="hidden" name="action" value="supprimerJ">
+                            <input type="hidden" name="id" value="${j.id}">
+                            <input type="hidden" name="action" value="supprimer">
                             <input type="submit" value="Supprimer">
                         </form>
                     </td>
@@ -175,6 +175,65 @@
       </table>
      
      <h3>Gestion des tutoriaux</h3>
+      <form method='post' class="formCentre" action='ServletAdministration'>
+        <p>
+            <input type='hidden' name='action' value='creerTuto'>
+            <input type='submit'  value='Générer les tutoriaux'>
+        </p>
+    </form>
+     <table id='tableTutoriaux'>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Identifiant</th>
+                <th>Titre</th>
+                <th>Résumé</th>
+                <th>Liens</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody
+            <c:forEach var="j" items="${listeTutos}">
+                <tr>
+                    <td><img src="${j.cheminImg}"></td>
+                    <td>${j.id}</td>
+                    <td>${j.titre}</td>
+                    <td> <div style='max-height: 80px; overflow: scroll; overflow-x: hidden;'>${j.resume}</div></td>
+                    <td>
+                        <ul>
+                            <c:set var="total" value="0"/>
+                            <c:forEach var="l" items="${j.liens}">
+                                <li><a href="${l.libelle}" target='_blank'>Lien<c:set var="total" value="${total+1}"/>${total}</a></li>
+                            </c:forEach>
+                            
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                        <c:forEach var="li" items="${j.tags}">
+                            <li>${li.libelle}<br/></li>
+                        </c:forEach>
+                        </ul>
+                    </td>
+                    <td>
+                        <form method='post' action='ServletAdministration'>
+                            <input type="hidden" name="idU" value="${j.id}">
+                            <input type="hidden" name="action" value="supprimerJ">
+                            <input type="submit" value="Supprimer">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=reculerTuto#tableTutoriaux'>Précédent</a></td>
+                <td colspan="5">${departTuto}-${departTuto+5}</td>
+                <td><a href='${pageContext.request.contextPath}/ServletAdministration?action=avancerTuto#tableTutoriaux'>Suivant</a></td>
+            </tr>
+        </tfoot>
+      </table>
     </p>
 </c:if>
 <c:if test="${loginU == null || typeU==0}">
