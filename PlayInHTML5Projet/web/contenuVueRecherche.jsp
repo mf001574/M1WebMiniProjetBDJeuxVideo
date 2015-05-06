@@ -62,6 +62,6 @@
                
 </c:if>
 <c:if test="${loginU == null}">
-    <h3>Vous n'avez pas l'authorisation pour accéder au contenu de cette page</h3>
+    <h3>Vous n'avez pas l'autorisation pour accéder au contenu de cette page</h3>
 </c:if>
 
