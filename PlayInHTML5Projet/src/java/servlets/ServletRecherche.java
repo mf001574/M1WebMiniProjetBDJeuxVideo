@@ -5,26 +5,32 @@
  */
 package servlets;
 
-import gestionnaires.GestionnaireUtilisateur;
+import gestionnaires.GestionnaireContenu;
+import gestionnaires.GestionnaireTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author florian
  */
-@WebServlet(name = "ServletAdministration", urlPatterns = {"/ServletAdministration"})
-public class ServletAdministration extends HttpServlet {
-    @EJB
-    private GestionnaireUtilisateur gestionnaireUtilisateur;
-   
+@WebServlet(name = "ServletRecherche", urlPatterns = {"/ServletRecherche"})
+public class ServletRecherche extends HttpServlet {
+    
+     @EJB
+        private GestionnaireTag gestionnaireTags;
+     @EJB
+        private GestionnaireContenu gestionnaireContenu;
+        private int departRecherche;
+        private String loginRecherche;
+        private String tagRecherche;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +44,36 @@ public class ServletAdministration extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-             String action = request.getParameter("action");        
-             if(action!=null){
-                
-                 if(action.equals("creer100")){
-                    this.gestionnaireUtilisateur.creer100UtilisateursDeTest();
+            String action = request.getParameter("action");   
+            if(action!=null){
+              
+                if(action.equals("rechercher")){
+                     this.loginRecherche = request.getParameter("titre");
+                     this.tagRecherche =  request.getParameter("tags");
+                     session.setAttribute("listeResultatRecherche2", this.gestionnaireContenu.rechercher5Contenus(this.departRecherche,this.loginRecherche,this.tagRecherche));
                     
-                 }
-             }
-          
-            request.setAttribute("listeUtilisateurs", this.gestionnaireUtilisateur.getAllUsers());
-            RequestDispatcher dp = request.getRequestDispatcher("vueAdministration.jsp");
-            dp.forward(request, response);
-            //response.sendRedirect("vueAdministration.jsp");
-            
+                     session.setAttribute("tagsRecherche", request.getParameter("tagsRecherche") );
+                
+                }else if(action.equals("avancer")){
+                     this.departRecherche+=5;
+                     session.setAttribute("listeResultatRecherche2", this.gestionnaireContenu.rechercher5Contenus(this.departRecherche,this.loginRecherche,this.tagRecherche));
+                
+                }else if(action.equals("reculer")){
+                     if(!(this.departRecherche<=0)){
+                         this.departRecherche-=5;
+                     }
+                     session.setAttribute("listeResultatRecherche2", this.gestionnaireContenu.rechercher5Contenus(this.departRecherche,this.loginRecherche,this.tagRecherche));
+                
+                }
+                
+            }
+            session.setAttribute("ListeTags", this.gestionnaireTags.getTags());
+            session.setAttribute("departRecherche", this.departRecherche);
+            response.sendRedirect("vueRecherche.jsp");
         }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

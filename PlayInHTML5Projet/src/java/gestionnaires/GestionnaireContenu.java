@@ -28,7 +28,7 @@ public class GestionnaireContenu {
     private EntityManager em; 
     private int nbJeux = 0;
     private HashMap<String,Tag> listeTag;
-    private String[] nomTags = {"Jeu","Tutoriel","Démo","Aventure","Sport","Action","Arcade","Réflexion","Musique","Jeu de plateforme","Snake","Tutoriel","Phaser","Quintus"};
+    private String[] nomTags = {"Jeu","Tutoriel","Démo","Aventure","Sport","Action","Arcade","Réflexion","Musique","Jeu de plateforme","Snake","Phaser","Quintus"};
     
 
     public GestionnaireContenu(){
@@ -88,7 +88,7 @@ public class GestionnaireContenu {
         j.addTag(this.listeTag.get("Sport"));
         this.listeTag.get("Sport").addContenu(j); 
         //em.persist(j);  
-        em.merge(j);
+        //em.merge(j);
         
         j = this.creerJeu("Angry Birds", new StringBuilder("Les cochons ont dérobé les oeufs des oiseaux. Ils sont donc en colère " + 
 "Pour les récupérer, vous devez adroitement envoyer les oiseaux au bon endroit pour dégommer les cochons et marquer un maximum de points." +
@@ -101,7 +101,7 @@ public class GestionnaireContenu {
         this.listeTag.get("Jeu").addContenu(j); 
         j.addTag(this.listeTag.get("Réflexion"));
         this.listeTag.get("Réflexion").addContenu(j);
-        em.merge(j);
+        //em.merge(j);
         
          j = this.creerJeu("StarPutt", new StringBuilder("Il s'agit avant tout d'un jeu de mini golf.\n" +
 "\n" +
@@ -115,7 +115,7 @@ public class GestionnaireContenu {
         j.addLien(l);
         j.addTag(this.listeTag.get("Jeu"));
         this.listeTag.get("Jeu").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
          
         j = this.creerJeu("Infinite Mario", new StringBuilder("Redécouvrez ce jeu mythique, dans une version spécialement retravaillée en HTML5, tout à fait jouable.\n" +
 "Le score est partageable via facebook. "), "resources/infiniteMario.png", 0);
@@ -130,7 +130,7 @@ public class GestionnaireContenu {
         j.addTag(this.listeTag.get("Jeu de plateforme"));
         this.listeTag.get("Jeu de plateforme").addContenu(j); 
         
-        em.merge(j);
+        //em.merge(j);
         
          j = this.creerJeu("Creatures and Castles", new StringBuilder("Voici un jeu de stratégie à l'ambiance médiévale. Vous incarnez un héros en quête de liberté, emprisonné dans un château peuplé de trois types d'ennemis.\n" +
 "Le jeu fera appel à vos réflexes, mais surtout à vos neurones pour trouver le bon chemin entre les murs du château.\n" +
@@ -143,7 +143,7 @@ public class GestionnaireContenu {
         this.listeTag.get("Jeu").addContenu(j); 
         j.addTag(this.listeTag.get("Réflexion"));
         this.listeTag.get("Réflexion").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
         
         
          j = this.creerJeu("Music Can Be Fun", new StringBuilder(" Ce jeu simple mais surprenant se base sur une musique originale de Ra Ra Riot.\n" +
@@ -158,7 +158,7 @@ public class GestionnaireContenu {
         this.listeTag.get("Jeu").addContenu(j); 
         j.addTag(this.listeTag.get("Musique"));
         this.listeTag.get("Musique").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
         
         j = this.creerJeu("Space Maze", new StringBuilder("Labyrinthe dans l'espace"), "resources/HTML5LOGO.png", 0);
         j.setTypeContenu(0);
@@ -167,7 +167,7 @@ public class GestionnaireContenu {
         j.addLien(l);
         j.addTag(this.listeTag.get("Jeu"));
         this.listeTag.get("Jeu").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
         
         j = this.creerJeu("Mack Jetpack", new StringBuilder("Jeu où vous contrôllez un jetpack"), "resources/jetpack.jpeg", 0);
         j.setTypeContenu(0);
@@ -176,7 +176,7 @@ public class GestionnaireContenu {
         j.addLien(l);
         j.addTag(this.listeTag.get("Jeu"));
         this.listeTag.get("Jeu").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
         
         j = this.creerJeu("Biolab Disaster", new StringBuilder(" Ce petit jeu de plateforme peut sembler un peu trop pixelisé au début, mais sa jouabilité et son ambiance sonore sont réellement bluffants.\n" +
 "\n" +
@@ -192,7 +192,7 @@ public class GestionnaireContenu {
         j.addLien(l);
         j.addTag(this.listeTag.get("Jeu"));
         this.listeTag.get("Jeu").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
         
         j = this.creerJeu("Snaky 360", new StringBuilder("C'est un jeu de serpent possédant de nombreux niveaux, tous très variés, avec des modes de jeux différents, un système de médailles, d'insignes, de progression, etc.\n" +
 "Tout est fait pour que obtenir un vrai jeu addictif pour plusieurs heures, avec personnalisation des scores et classement public.\n" +
@@ -206,7 +206,7 @@ public class GestionnaireContenu {
         this.listeTag.get("Jeu").addContenu(j); 
         j.addTag(this.listeTag.get("Snake"));
         this.listeTag.get("Snake").addContenu(j); 
-        em.merge(j);
+        //em.merge(j);
         
         j = this.creerJeu("wArp", new StringBuilder("Dans ce jeu de plateformes, vous incarnez un petit robot bionique qui doit survivre parmi les différents niveaux du jeu.\n" +
 "\n" +
@@ -222,7 +222,7 @@ public class GestionnaireContenu {
         j.addTag(this.listeTag.get("Jeu de plateforme"));
         this.listeTag.get("Jeu de plateforme").addContenu(j); 
      
-        em.merge(j);
+        em.persist(j);
      
        
        
@@ -242,7 +242,8 @@ public class GestionnaireContenu {
         d.addLien(l);
         d.addTag(this.listeTag.get("Démo"));
         this.listeTag.get("Démo").addContenu(d);
-        em.merge(d);
+        em.merge(d); 
+        
         
         d = new Contenu("Rubik's cube Démo HTML5",new StringBuilder("Jeu permettant de simuler un rubiks cube en HTML5"),"resources/HTML5LOGO.png",1);
         l = new Lien("https://developer.mozilla.org/fr/demos/detail/rubiks-cube-using-html5");
@@ -273,7 +274,7 @@ public class GestionnaireContenu {
         this.listeTag.get("Démo").addContenu(d);
         d.addTag(this.listeTag.get("Jeu de plateforme"));
         this.listeTag.get("Jeu de plateforme").addContenu(d);
-        em.merge(d);
+         em.merge(d);
         
         d = new Contenu("JS1K Dragons - Demo",new StringBuilder("Pour admirer des effets."),"resources/HTML5LOGO.png",1);
         l = new Lien("http://www.kevs3d.co.uk/dev/js1kdragons/");
@@ -281,7 +282,7 @@ public class GestionnaireContenu {
         d.addLien(l);
         d.addTag(this.listeTag.get("Démo"));
         this.listeTag.get("Démo").addContenu(d);
-        em.merge(d);
+         em.merge(d);
         
         d = new Contenu("JS1K Dragons - Demo",new StringBuilder("Pour admirer des effets."),"resources/HTML5LOGO.png",1);
         l = new Lien("http://www.kevs3d.co.uk/dev/js1kdragons/");
@@ -289,7 +290,7 @@ public class GestionnaireContenu {
         d.addLien(l);
         d.addTag(this.listeTag.get("Démo"));
         this.listeTag.get("Démo").addContenu(d);
-        em.merge(d);
+         em.merge(d);
         
          d = new Contenu("Exemple de jeu d'échec en HTML5",new StringBuilder("Reconstitution d'un jeu d'échec en HTML5"),"resources/HTML5LOGO.png",1);
         l = new Lien("http://htmlchess.sourceforge.net/demo/example.html");
@@ -368,10 +369,33 @@ public class GestionnaireContenu {
          
     }
 
-    public Collection<Contenu> rechercher(String nom, String tags) {
-      Query q = em.createQuery("select c from Contenu c");
+    public Collection<Contenu> rechercher5Contenus(int depart, String nom, String tag) {
+      String requete = "select c from Contenu c where c.titre like '%"+nom+"%' ";
+       /*if(tags!=null){
+        /*requete+= "and ( ";
+        for(int i=0 ; i<tags.length;i++){
+            if(i==tags.length-1)
+                requete+= "t.id = '"+tags[i]+"') ";
+            else
+                requete+= "t.id = '"+tags[i]+"' or ";
+        }
+           
+      }*/
+      if(tag!=null){
+       
+        requete="select c from Contenu c join Tag t where c.titre like '%"+nom+"%'  and t.id='"+tag+"' "; 
+      }
+      
+      requete+=" order by c.id";
+      
+      System.out.println(requete);
+      Query q = em.createQuery(requete);
+      q.setFirstResult(depart);
+      q.setMaxResults(5); 
       return q.getResultList();
     }
+    
+    
     public Collection<Contenu> get5Contenu(int depart){
        Query q = em.createQuery("select c from Contenu c order by c.id");
        q.setFirstResult(depart);

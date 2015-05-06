@@ -3,7 +3,8 @@
     Created on : 9 avr. 2015, 16:39:47
     Author     : florian
 --%>
-
+ <script type='text/javascript' src='resources/js/carousel.js'></script>
+        
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -25,17 +26,7 @@
         <p>
            N'attendez pas inscrivez vous!
         </p>
-        <form method="post" action="ServletIndex" class="formCentre">
-            <h3>Recherche multicritères</h3>
-            <input type="hidden" name="action" value="rechercher">
-            <p><input type="text" name="titre" placeholder="Titre"></p>
-            <p>
-                <c:forEach var="t" items="${ListeTags}">
-                     <label>${t.libelle}</label><input type="checkbox" name="tags" value="${t.id}">
-                </c:forEach>
-            </p>
-            <input type="submit" value="Rechercher">
-        </form>
+        
         <c:if test="${resultatRecherche!=null}">
             <table id='tableJeux'>
                 <thead>
@@ -80,4 +71,15 @@
         </c:if>
         
     </c:if>
+        
+   <div id="owl-demo" class="owl-carousel owl-theme">
+ 
+  <div class="item"><img src="resources/angryBirds.png"></div>
+  <div class="item"><img src="resources/biolab.png"  ></div>
+  <div class="item"><img src="resources/css3logo.png"  ></div>
+  <div class="item"><img src="resources/musicFun.png" ></div>
+  <div class="item"><img src="resources/jetpack.jpeg" ></div>
+  <div class="item"><img src="resources/starPutt.png"  ></div>
+ 
+</div>
     

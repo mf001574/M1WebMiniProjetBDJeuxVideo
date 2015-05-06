@@ -23,10 +23,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ServletIndex", urlPatterns = {"/ServletIndex"})
 public class ServletIndex extends HttpServlet {
-     @EJB
-        private GestionnaireTag gestionnaireTags;
-     @EJB
-        private GestionnaireContenu gestionnaireContenu;
+    
+       
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,12 +42,7 @@ public class ServletIndex extends HttpServlet {
          HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
              String action = request.getParameter("action");
-             if(action!=null){
-                 if(action.equals("rechercher")){
-                    session.setAttribute("resultatRecherche", this.gestionnaireContenu.rechercher(request.getParameter("titre"),request.getParameter("tags")));
-                 }
-             }
-            session.setAttribute("ListeTags", this.gestionnaireTags.getTags());
+        
             response.sendRedirect("vueAccueil.jsp");
         }
     }
